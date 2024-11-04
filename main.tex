@@ -12,6 +12,15 @@
 \section{Introduction}
 The aim of these notes is to describe one of the available numerical methods for modelling the diffusion and reaction processes of liquid chemical compounds displacing through fractured porous media.
 
+\section{Code verification}
+As a first step for ensuring the reliability of a solute transport simulation code it is essential to verify that the solutions of numerical experiments and analytical study coincide. For this purpose we compare the analytical solutions from three different transport problems against the numerically generated results, namely:
+\begin{itemize}
+    \item spatial distribution of the concentration at a given time for a solute that is displaced through an infinite bi-dimensional domain with horizontal impenetrable boundaries and initial one-dimensional vertical location;
+    \item probability density function of a breakthrough curve for a solute which is displaced through a semi-infinite domain where particles' arriving times are recorded on a vertical absorbing control plane;
+    \item degradation curve for a solute travelling through an infinite domain.
+\end{itemize}
+
+\subsection{Infinite domain}
 \begin{figure}[htbp]
     \centering
     \begin{subfigure}[b]{0.45\textwidth}
@@ -31,6 +40,7 @@ The aim of these notes is to describe one of the available numerical methods for
     \label{fig:Infinite}
 \end{figure}
 
+\subsection{Semi-infinite domain}
 \begin{figure}[htbp]
     \centering
     \begin{subfigure}[b]{0.45\textwidth}
@@ -49,5 +59,7 @@ The aim of these notes is to describe one of the available numerical methods for
     \caption{Verification of the code comparing two pdfs of the btc: blue dots represent the btc pdf from numerical simulation, solid red line is the analytical solution of the btc pdf for a semi-infinite domain}
     \label{fig:SemiInfinite}
 \end{figure}
+
+\section{Absorbing boundaries}
 
 \end{document}
