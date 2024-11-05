@@ -1,6 +1,7 @@
 \documentclass{article}
 \usepackage{graphicx}
 \usepackage{subcaption}
+\usepackage{amsmath}
 
 \title{Weekly meeting notes}
 \author{Eugenio Pescimoro }
@@ -10,7 +11,7 @@
 \maketitle
 
 \section{Introduction}
-The aim of these notes is to describe one of the available numerical methods for modelling the diffusion and reaction processes of liquid chemical compounds displacing through fractured porous media.
+The aim of these notes is to describe the numerical modelling of solute transport and diffusion through fractured porous media using a random walk approach.
 
 \section{Diffusion in fractures}
 The drifting term..
@@ -20,10 +21,15 @@ As a first step for ensuring the reliability of a solute transport simulation co
 \begin{itemize}
     \item spatial distribution of the concentration at a given time for a solute that is displaced through an infinite bi-dimensional domain with horizontal impenetrable boundaries and initial one-dimensional vertical location;
     \item probability density function of a breakthrough curve for a solute which is displaced through a semi-infinite domain where particles' arriving times are recorded on a vertical absorbing control plane;
-    \item degradation curve for a solute travelling through an infinite domain.
+    \item the survived particle in time curve for a solute subject to an exponential degradation process. 
 \end{itemize}
 
 \subsection{Infinite domain}
+In this test (Figure \ref{fig:Infinite}) we release $10^4$ particles in a horizontally infinite domain. Reflecting properties are assigned to the upper and lower horizontal boundaries and the simulation is run for $10^3$ time steps. After $10^2$ time steps the spatial distribution of the solute is recorded and compared against the analytical solution at the same time, namely:
+\begin{equation}
+    c(x) = \frac{e^{-\frac{x^2}{4 D t}}}{\sqrt{4 \pi D t}}.
+\end{equation}
+
 \begin{figure}[htbp]
     \centering
     \begin{subfigure}[b]{0.45\textwidth}
@@ -39,11 +45,17 @@ As a first step for ensuring the reliability of a solute transport simulation co
         \caption{Spatial distribution of the particles at time 1e2}
         \label{fig:subplotVerInf}
     \end{subfigure}
-    \caption{Verification of the code comparing two spatial distribution of the concentration at a given time: solid blue line represents the spatial concentration from a numerical simulation while solid red line shows the analytical solution of the spatial concentration in a infinite domain at the same given time}
+    \caption{Verification of the code comparing two spatial distribution of the concentration at a given time: solid blue line represents the spatial concentration from a numerical simulation while solid red line shows the analytical solution of the spatial concentration in a infinite domain at the same given time.}
     \label{fig:Infinite}
 \end{figure}
 
 \subsection{Semi-infinite domain}
+In this test (Figure \ref{fig:SemiInfinite}), the arrival times of the particles are recorded on the left absorbing boundary. The spatial bins are logarithmically spaced and the number of particles per time bin is divided by the total number of particles and the width of the temporal bin. This result is compared against its analytical solution, namely:
+\begin{equation}
+        c(t) = \frac{x_0 e^{-\frac{x_0^2}{4 D t}}}{\sqrt{4 \pi D t^3}}
+\end{equation}
+where $x_0$ is the distance between the vertical plane where particle are released and the absorbing vertical plane.
+
 \begin{figure}[htbp]
     \centering
     \begin{subfigure}[b]{0.45\textwidth}
@@ -64,6 +76,12 @@ As a first step for ensuring the reliability of a solute transport simulation co
 \end{figure}
 
 \subsection{Degradation}
+This test (Figure \ref{fig:Degradation}) focuses on a horizontally infinite scenario where $10^3$ particles travel for maximum $10^3$ time steps. The upper and lower horizontal boundaries are both reflecting the particles however, some of the latter disappear due to a degradation process which follows an exponential trend:
+\begin{equation}
+    p_s(t) = k e^{-kt}
+\end{equation}
+where $p_s(t)$ is the survival probability distribution. Before the simulation, the survival probability of each particle is a random variable charaterised by the $p_s(t)$ probability distribution with values between 0 and the maximum number of time steps. After every time step, the particles' survival time is withdrawn from the simulation if its survival time is less than the time step. The degradation kinetic constant $k$ for the following simulation was assigned an arbitrary value equal to 0.01.
+
 \begin{figure}[htbp]
     \centering
     \begin{subfigure}[b]{0.45\textwidth}
@@ -84,7 +102,10 @@ As a first step for ensuring the reliability of a solute transport simulation co
 \end{figure}
 
 \section{Absorbing boundaries}
+For the case where the particles which impact the lower and upper boundaries are absorbed, the analytical solution is not available. In the following example (Figure \ref{fig:finalPos} - Figure \ref{fig:AbsorptionInTime}), the particles which hit the boundaries have 100\% probability of being absorbed. An alternative which has been implemented in the code but is not currently shown allows to assign to the particles different absorption probability that is, the outcome of the impact of particle with the walls (either reflected or absorbed) will becomes a random variable which is drawn from a custom probability distribution.
+
 \subsection{Final positions}
+The final position of $10^4$ particles after 20 steps is shown in Figure \ref{fig:finalPos}.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.5\textwidth]{images/finalPositions.png}
@@ -92,6 +113,8 @@ As a first step for ensuring the reliability of a solute transport simulation co
     \label{fig:finalPos}
 \end{figure}
 
+\subsection{Cross section histograms}
+Figures \ref{fig:subplotVertFinal} and \ref{fig:subplotHorFinal} show the number of particles in two different regions of space at the end of the simulation. 
 \begin{figure}[htbp]
     \centering
     \begin{subfigure}[b]{0.45\textwidth}
@@ -109,6 +132,27 @@ As a first step for ensuring the reliability of a solute transport simulation co
     \end{subfigure}
     \caption{Absorbing boundaries}
     \label{fig:Absorption}
+\end{figure}
+
+\subsection{Non-absorbed particles in time}
+Figure \ref{fig:AbsorptionInTime} show the number of free particles, i.e. those that were not absorbed, throughout time. 
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/nonAbsParticles.pdf}
+        \caption{Non-absorbed particles in time}
+        \label{fig:subplotNonAbsPart}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/nonAbsParticlesNorm.pdf}
+        \caption{Normalised number of non-absorbed particles in time}
+        \label{fig:subplotNonAbsPartNorm}
+    \end{subfigure}
+    \caption{Non-absorbed particles in time normalised with initial total number of particles}
+    \label{fig:AbsorptionInTime}
 \end{figure}
 
 \end{document}
