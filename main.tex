@@ -41,7 +41,7 @@ In this test (Figure \ref{fig:Infinite}) we release $10^4$ particles in a horizo
     \hfill
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{images/verificationInfinite.pdf} % Replace with your image path
+        \includegraphics[width=\textwidth]{images/verificationInfinite.png} % Replace with your image path
         \caption{Spatial distribution of the particles at time 1e2}
         \label{fig:subplotVerInf}
     \end{subfigure}
@@ -67,7 +67,7 @@ where $x_0$ is the distance between the vertical plane where particle are releas
     \hfill
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{images/verificationSemi-infinite.pdf} % Replace with your image path
+        \includegraphics[width=\textwidth]{images/verificationSemi-infinite.png} % Replace with your image path
         \caption{Arrival times on the left absorbing boundary}
         \label{fig:subplotVerSemiInf}
     \end{subfigure}
@@ -93,7 +93,7 @@ where $p_s(t)$ is the survival probability distribution. Before the simulation, 
     \hfill
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{images/liveParticleInTime.pdf} % Replace with your image path
+        \includegraphics[width=\textwidth]{images/liveParticleInTime.png} % Replace with your image path
         \caption{PDF of survived particles in time}
         \label{fig:subplotLivePart}
     \end{subfigure}
@@ -119,14 +119,14 @@ Figures \ref{fig:subplotVertFinal} and \ref{fig:subplotHorFinal} show the number
     \centering
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{images/verticalFinalDist.pdf} % Replace with your image path
+        \includegraphics[width=\textwidth]{images/verticalFinalDist.png} % Replace with your image path
         \caption{Vertical distribution of particles}
         \label{fig:subplotVertFinal}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{images/horizontalFinalDist.pdf} % Replace with your image path
+        \includegraphics[width=\textwidth]{images/horizontalFinalDist.png} % Replace with your image path
         \caption{Horizontal distribution of particles}
         \label{fig:subplotHorFinal}
     \end{subfigure}
@@ -140,14 +140,14 @@ Figure \ref{fig:AbsorptionInTime} show the number of free particles, i.e. those 
     \centering
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{images/nonAbsParticles.pdf}
+        \includegraphics[width=\textwidth]{images/nonAbsParticles.png}
         \caption{Non-absorbed particles in time}
         \label{fig:subplotNonAbsPart}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{images/nonAbsParticlesNorm.pdf}
+        \includegraphics[width=\textwidth]{images/nonAbsParticlesNorm.png}
         \caption{Normalised number of non-absorbed particles in time}
         \label{fig:subplotNonAbsPartNorm}
     \end{subfigure}
@@ -161,19 +161,19 @@ Figure \ref{fig:AbsorptionInTime} show the number of free particles, i.e. those 
     \centering
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{images/nonAbsParticles.pdf}
-        \caption{Non-absorbed particles in time}
-        \label{fig:subplotNonAbsPart}
+        \includegraphics[width=\textwidth]{images/survTimeDistCompare.png}
+        \caption{Survival time distribution curves from analytical (red solid), experimental (blue dots) well-mixed scenario and diffusion-limited experimental case.}
+        \label{fig:survTimeDist}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{images/nonAbsParticlesNorm.pdf}
-        \caption{Normalised number of non-absorbed particles in time}
-        \label{fig:subplotNonAbsPartNorm}
+        \includegraphics[width=\textwidth]{images/survTimeDistRateCompare.png}
+        \caption{Reaction rates from analytical (red solid), experimental (blue dots) well-mixed scenario and diffusion-limited experimental case.}
+        \label{fig:survTimeDistRate}
     \end{subfigure}
-    \caption{Non-absorbed particles in time normalised with initial total number of particles}
-    \label{fig:AbsorptionInTime}
+    \caption{$10^5$ particles and 20 time steps. The value of the exponent k for the analytical case is 0.5.}
+    \label{fig:survTime}
 \end{figure}
 
 \end{document}
