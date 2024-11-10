@@ -32,18 +32,25 @@ In this test (Figure \ref{fig:Infinite}) we release $10^4$ particles in a horizo
 
 \begin{figure}[htbp]
     \centering
-    \begin{subfigure}[b]{0.45\textwidth}
+    \begin{subfigure}[b]{0.3\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/trajectoriesInfinite.png} % Replace with your image path
         \caption{Trajectories of 1e4 particles during 1e3 time steps}
         \label{fig:subplotTrInf}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.45\textwidth}
+    \begin{subfigure}[b]{0.3\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/verificationInfinite.png} % Replace with your image path
         \caption{Spatial distribution of the particles at time 1e2}
         \label{fig:subplotVerInf}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/verificationInfinite1e5.png} % Replace with your image path
+        \caption{Spatial distribution of the particles at time 1e2 with 1e5 particles}
+        \label{fig:subplotVerInf1e5}
     \end{subfigure}
     \caption{Verification of the code comparing two spatial distribution of the concentration at a given time: solid blue line represents the spatial concentration from a numerical simulation while solid red line shows the analytical solution of the spatial concentration in a infinite domain at the same given time.}
     \label{fig:Infinite}
