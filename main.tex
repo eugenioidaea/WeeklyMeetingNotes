@@ -65,18 +65,25 @@ where $x_0$ is the distance between the vertical plane where particle are releas
 
 \begin{figure}[htbp]
     \centering
-    \begin{subfigure}[b]{0.45\textwidth}
+    \begin{subfigure}[b]{0.3\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/trajectoriesSemiInfinite.png} % Replace with your image path
         \caption{Trajectories of 1e4 particles during 1e3 time steps}
         \label{fig:subplotTrSemiInf}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.45\textwidth}
+    \begin{subfigure}[b]{0.3\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/verificationSemi-infinite.png} % Replace with your image path
         \caption{Arrival times on the left absorbing boundary}
         \label{fig:subplotVerSemiInf}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/verificationSemi-infiniteImproved.png} % Replace with your image path
+        \caption{Arrival times on the left absorbing boundary with 1e4 particles, 1e4 time steps and x0=4}
+        \label{fig:subplotVerSemiInfImproved}
     \end{subfigure}
     \caption{Verification of the code comparing two pdfs of the btc: blue dots represent the btc pdf from numerical simulation, solid red line is the analytical solution of the btc pdf for a semi-infinite domain}
     \label{fig:SemiInfinite}
