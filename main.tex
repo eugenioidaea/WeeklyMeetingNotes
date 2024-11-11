@@ -190,4 +190,24 @@ Figure \ref{fig:AbsorptionInTime} show the number of free particles, i.e. those 
     \label{fig:survTime}
 \end{figure}
 
+\section{Matrix diffusion}
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/trajectoriesMatrixDiffusion.png}
+        \caption{Trajectories from matrix diffusion implemented according to Semra 1993 and using Df=0.1 and Dm=0.001}
+        \label{fig:MatDiff}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/verificationMatrixDiffusion.png}
+        \caption{Analytical solution vs numerical experiment using matrix diffusion}
+        \label{fig:MatrixDiffusionVerification}
+    \end{subfigure}
+    \caption{100 particles and 1000 time steps}
+    \label{fig:MatrixDiffusion}
+\end{figure}
+
 \end{document}
