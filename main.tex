@@ -207,18 +207,25 @@ For each particle crossing from the fracture to the porous matrix, a random numb
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/trajectoriesMatrixDiffusion.png}
-        \caption{Trajectories from matrix diffusion implemented according to Semra 1993 and using Df=0.1 and Dm=0.001}
+        \caption{Trajectories from matrix diffusion implemented according to Semra 1993 and using Df=0.1 and Dm=0.001 and 100 particles and 1000 time steps}
         \label{fig:MatDiff}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/verificationMatrixDiffusion.png}
-        \caption{Analytical solution vs numerical experiment using matrix diffusion}
+        \caption{Analytical solution vs numerical experiment using matrix diffusion and $10^4$ particles and $10^4$ time steps and recorded at t=100 time steps}
         \label{fig:MatrixDiffusionVerification}
     \end{subfigure}
-    \caption{100 particles and 1000 time steps}
+    \caption{Verification against analytical solution for infinite domain}
     \label{fig:MatrixDiffusion}
+\end{figure}
+The table \ref{fig:MatrixDiffusionVerification} highlights the difference between the diffusion coefficient of the fracture and the one of the porous matrix: once a particle escapes from the fracture, its jumps are 100 times smaller compared to those that still live in the fracture. It follows that, the more impacts the more particles cross the border and the higher the concentration. Interesting enough, if the probability of matrix-to-fracture crossing is zero, after $10^4$ time steps no particles is left in the fracture, as shown in Figure \ref{fig:finalPosMatrixDiff}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/finalPositionsMatrixDiffusion.png}
+    \caption{Final position of $10^4$ particles after $10^4$ time steps}
+    \label{fig:finalPosMatrixDiff}
 \end{figure}
 
 \FloatBarrier  % Prevents figures from floating past this point
