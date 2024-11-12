@@ -3,6 +3,7 @@
 \usepackage{subcaption}
 \usepackage{amsmath}
 \usepackage{cite}  % Optional for better citation management
+\usepackage{placeins}
 
 \title{Weekly meeting notes}
 \author{Eugenio Pescimoro }
@@ -14,9 +15,11 @@
 \section{Introduction}
 The aim of these notes is to describe the numerical modelling of solute transport and diffusion through fractured porous media using a random walk approach.
 
+\FloatBarrier  % Prevents figures from floating past this point
 \section{Diffusion in fractures}
 The drifting term..
 
+\FloatBarrier  % Prevents figures from floating past this point
 \section{Code verification}
 As a first step for ensuring the reliability of a solute transport simulation code it is essential to verify that the solutions of numerical experiments and analytical study coincide. For this purpose we compare the analytical solutions from three different transport problems against the numerically generated results, namely:
 \begin{itemize}
@@ -112,10 +115,11 @@ where $p_s(t)$ is the survival probability distribution. Before the simulation, 
         \caption{PDF of survived particles in time}
         \label{fig:subplotLivePart}
     \end{subfigure}
-    \caption{Verification of the code comparing two pdfs of the btc: blue dots represent the btc pdf from numerical simulation, solid red line is the analytical solution of the btc pdf for a semi-infinite domain}
+    \caption{Verification of the code comparing two pdfs of the btc: blue dots represent the btc pdf from numerical simulation, solid red line is the analytical solution of the btc pdf}
     \label{fig:Degradation}
 \end{figure}
 
+\FloatBarrier  % Prevents figures from floating past this point
 \section{Absorbing boundaries}
 For the case where the particles which impact the lower and upper boundaries are absorbed, the analytical solution is not available. In the following example (Figure \ref{fig:finalPos} - Figure \ref{fig:AbsorptionInTime}), the particles which hit the boundaries have 100\% probability of being absorbed. An alternative which has been implemented in the code but is not currently shown allows to assign to the particles different absorption probability that is, the outcome of the impact of particle with the walls (either reflected or absorbed) will becomes a random variable which is drawn from a custom probability distribution.
 
@@ -170,6 +174,7 @@ Figure \ref{fig:AbsorptionInTime} show the number of free particles, i.e. those 
     \label{fig:AbsorptionInTime}
 \end{figure}
 
+\FloatBarrier  % Prevents figures from floating past this point
 \section{Well-mixed vs diffusion-limited}
 \subsection{Survival time distribution and reaction rates}
 \begin{figure}[htbp]
@@ -191,6 +196,7 @@ Figure \ref{fig:AbsorptionInTime} show the number of free particles, i.e. those 
     \label{fig:survTime}
 \end{figure}
 
+\FloatBarrier  % Prevents figures from floating past this point
 \section{Matrix diffusion}
 For each particle crossing from the fracture to the porous matrix, a random number from a uniform distribution over the interval 0 and 1 is drawn. If this number is higher than a threshold then the particle crosses the boundary otherwise it is elastically reflected. Following the approach of \cite{salamon2006review} we set the probability of a particle crossing the fracture-porous matrix boundary equal to:
 \begin{equation}
@@ -215,6 +221,7 @@ For each particle crossing from the fracture to the porous matrix, a random numb
     \label{fig:MatrixDiffusion}
 \end{figure}
 
+\FloatBarrier  % Prevents figures from floating past this point
 \bibliographystyle{plain}  % The style of your bibliography (e.g., plain, ieee, acm, etc.)
 \bibliography{references}  % Name of the .bib file without the extension
 
