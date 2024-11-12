@@ -2,6 +2,7 @@
 \usepackage{graphicx}
 \usepackage{subcaption}
 \usepackage{amsmath}
+\usepackage{cite}  % Optional for better citation management
 
 \title{Weekly meeting notes}
 \author{Eugenio Pescimoro }
@@ -191,6 +192,10 @@ Figure \ref{fig:AbsorptionInTime} show the number of free particles, i.e. those 
 \end{figure}
 
 \section{Matrix diffusion}
+For each particle crossing from the fracture to the porous matrix, a random number from a uniform distribution over the interval 0 and 1 is drawn. If this number is higher than a threshold then the particle crosses the boundary otherwise it is elastically reflected. Following the approach of \cite{salamon2006review} we set the probability of a particle crossing the fracture-porous matrix boundary equal to:
+\begin{equation}
+    P_f = \frac{\sqrt{D_f}}{\sqrt{D_f}+\sqrt{D_m}}
+\end{equation}
 \begin{figure}[htbp]
     \centering
     \begin{subfigure}[b]{0.45\textwidth}
@@ -209,5 +214,8 @@ Figure \ref{fig:AbsorptionInTime} show the number of free particles, i.e. those 
     \caption{100 particles and 1000 time steps}
     \label{fig:MatrixDiffusion}
 \end{figure}
+
+\bibliographystyle{plain}  % The style of your bibliography (e.g., plain, ieee, acm, etc.)
+\bibliography{references}  % Name of the .bib file without the extension
 
 \end{document}
