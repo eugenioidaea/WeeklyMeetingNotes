@@ -231,6 +231,26 @@ The table \ref{fig:MatrixDiffusionVerification} highlights the difference betwee
     \label{fig:finalPosMatrixDiff}
 \end{figure}
 
+\subsection{Verification: no probabilistic crossing between different diffusivity}
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/trajectoriesMatrixDiffusion.png}
+        \caption{Trajectories from matrix diffusion implemented according to Semra 1993 and using Df=0.1 and Dm=0.001 and 100 particles and 1000 time steps}
+        \label{fig:MatDiff}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/verificationMatrixDiffusion.png}
+        \caption{Analytical solution vs numerical experiment using matrix diffusion and $10^4$ particles and $10^4$ time steps and recorded at t=100 time steps}
+        \label{fig:MatrixDiffusionVerification}
+    \end{subfigure}
+    \caption{Verification against analytical solution for infinite domain}
+    \label{fig:MatrixDiffusion}
+\end{figure}
+
 \FloatBarrier  % Prevents figures from floating past this point
 \bibliographystyle{plain}  % The style of your bibliography (e.g., plain, ieee, acm, etc.)
 \bibliography{references}  % Name of the .bib file without the extension
