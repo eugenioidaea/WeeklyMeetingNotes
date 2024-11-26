@@ -180,23 +180,28 @@ Figure \ref{fig:AbsorptionInTime} show the number of free particles, i.e. those 
 \FloatBarrier  % Prevents figures from floating past this point
 \section{Well-mixed vs diffusion-limited}
 \subsection{Survival time distribution and reaction rates}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/survTimeDistCompare.png}
+    \caption{Survival time distribution curves from analytical (red solid), experimental (blue dots) well-mixed scenario and diffusion-limited experimental case.}
+    \label{fig:survTime}
+\end{figure}
+
 \begin{figure}[htbp]
     \centering
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{images/survTimeDistCompare.png}
-        \caption{Survival time distribution curves from analytical (red solid), experimental (blue dots) well-mixed scenario and diffusion-limited experimental case.}
-        \label{fig:survTimeDist}
+        \includegraphics[width=\textwidth]{images/compareDecayDegradationRatesLin.png}
+        \caption{Reaction rates from analytical (red solid), experimental (blue dots) well-mixed scenario and diffusion-limited experimental case.}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{images/survTimeDistRateCompare.png}
+        \includegraphics[width=\textwidth]{images/compareDecayDegradationRatesLog.png}
         \caption{Reaction rates from analytical (red solid), experimental (blue dots) well-mixed scenario and diffusion-limited experimental case.}
-        \label{fig:survTimeDistRate}
     \end{subfigure}
     \caption{$10^5$ particles and 20 time steps. The value of the exponent k for the analytical case is 0.5.}
-    \label{fig:survTime}
+    \label{fig:survTimeRate}
 \end{figure}
 
 \FloatBarrier  % Prevents figures from floating past this point
@@ -236,20 +241,71 @@ The table \ref{fig:MatrixDiffusionVerification} highlights the difference betwee
     \centering
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{images/trajectoriesMatrixDiffusion.png}
-        \caption{Trajectories from matrix diffusion implemented according to Semra 1993 and using Df=0.1 and Dm=0.001 and 100 particles and 1000 time steps}
-        \label{fig:MatDiff}
+        \includegraphics[width=\textwidth]{images/positionsDl01Dr01Rl0Rr0.png}
+        \caption{No probability condition on crossing between the two diffusivity regions and Dl = Dr = 0.1}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{images/verificationMatrixDiffusion.png}
-        \caption{Analytical solution vs numerical experiment using matrix diffusion and $10^4$ particles and $10^4$ time steps and recorded at t=100 time steps}
-        \label{fig:MatrixDiffusionVerification}
+        \includegraphics[width=\textwidth]{images/histDl01Dr01Rl0Rr0.png}
+        \caption{Normalised histogram of particles' distribution along X at the end of the simulation}
     \end{subfigure}
-    \caption{Verification against analytical solution for infinite domain}
-    \label{fig:MatrixDiffusion}
+    \caption{1e4 particles, 1e4 time steps, dt=1}
+    \label{fig:MatrixDiffusion1}
 \end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/positionsDl01Dr001Rl0Rr0.png}
+        \caption{No probability condition on crossing between the two diffusivity regions and Dl = 0.1 while Dr = 0.01}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/histDl01Dr001Rl0Rr0.png}
+        \caption{Normalised histogram of particles' distribution along X at the end of the simulation}
+    \end{subfigure}
+    \caption{1e4 particles, 1e4 time steps, dt=1}
+    \label{fig:MatrixDiffusion2}
+\end{figure}
+
+\subsection{Verification: probabilistic boundary between different diffusivity}
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/positionsDl01Dr01RlPlRrPr.png}
+        \caption{Probability condition on crossing between the two diffusivity regions and Dl = Dr = 0.1}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/histDl01Dr01RlPlRrPr.png}
+        \caption{Normalised histogram of particles' distribution along X at the end of the simulation}
+    \end{subfigure}
+    \caption{1e4 particles, 1e4 time steps, dt=1}
+    \label{fig:MatrixDiffusion3}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/positionsDl01Dr001RlPlRrPr.png}
+        \caption{Probability condition on crossing between the two diffusivity regions and Dl = 0.1 while Dr = 0.01}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/histDl01Dr001RlPlRrPr.png}
+        \caption{Normalised histogram of particles' distribution along X at the end of the simulation}
+    \end{subfigure}
+    \caption{1e4 particles, 1e4 time steps, dt=1}
+    \label{fig:MatrixDiffusion4}
+\end{figure}
+
 
 \FloatBarrier  % Prevents figures from floating past this point
 \bibliographystyle{plain}  % The style of your bibliography (e.g., plain, ieee, acm, etc.)
