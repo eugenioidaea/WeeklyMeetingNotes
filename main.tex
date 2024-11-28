@@ -183,7 +183,7 @@ Figure \ref{fig:AbsorptionInTime} show the number of free particles, i.e. those 
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.5\textwidth]{images/survTimeDistCompare.png}
-    \caption{Survival time distribution curves from analytical (red solid), experimental (blue dots) well-mixed scenario and diffusion-limited experimental case.}
+    \caption{Survival time distribution curves from experimental well-mixed scenario and diffusion-limited experimental case.}
     \label{fig:survTime}
 \end{figure}
 
@@ -192,16 +192,42 @@ Figure \ref{fig:AbsorptionInTime} show the number of free particles, i.e. those 
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/compareDecayDegradationRatesLin.png}
-        \caption{Reaction rates from analytical (red solid), experimental (blue dots) well-mixed scenario and diffusion-limited experimental case.}
+        \caption{Reaction rates from experimental well-mixed scenario and diffusion-limited experimental case.}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/compareDecayDegradationRatesLog.png}
-        \caption{Reaction rates from analytical (red solid), experimental (blue dots) well-mixed scenario and diffusion-limited experimental case.}
+        \caption{Reaction rates from experimental well-mixed scenario and diffusion-limited experimental case.}
     \end{subfigure}
-    \caption{$10^5$ particles and 20 time steps. The value of the exponent k for the analytical case is 0.5.}
+    \caption{$10^6$ particles and 500 time steps. The value of the exponent k for the analytical case is 0.5.}
     \label{fig:survTimeRate}
+\end{figure}
+
+\subsection{Adsorbing boundaries: survival time distributions and effective reaction rates}
+\subsubsection{Effect of diffusivity coefficient}
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/compareDecayDegradationRatesLin.png}
+        \caption{Reaction rates from experimental well-mixed scenario and diffusion-limited experimental case.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/compareDecayDegradationRatesLog.png}
+        \caption{Reaction rates from experimental well-mixed scenario and diffusion-limited experimental case.}
+    \end{subfigure}
+    \caption{$10^6$ particles and 500 time steps. The value of the exponent k for the analytical case is 0.5.}
+    \label{fig:survTimeRate}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/survTimeDistCompare.png}
+    \caption{Survival time distribution curves from experimental well-mixed scenario and diffusion-limited experimental case.}
+    \label{fig:survTime}
 \end{figure}
 
 \FloatBarrier  % Prevents figures from floating past this point
