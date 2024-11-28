@@ -289,6 +289,7 @@ The table \ref{fig:MatrixDiffusionVerification} highlights the difference betwee
     \label{fig:finalPosMatrixDiff}
 \end{figure}
 
+\FloatBarrier  % Prevents figures from floating past this point
 \subsection{Verification: no probabilistic crossing between different diffusivity}
 \begin{figure}[htbp]
     \centering
@@ -324,6 +325,7 @@ The table \ref{fig:MatrixDiffusionVerification} highlights the difference betwee
     \label{fig:MatrixDiffusion2}
 \end{figure}
 
+\FloatBarrier  % Prevents figures from floating past this point
 \subsection{Verification: probabilistic boundary between different diffusivity}
 \begin{figure}[htbp]
     \centering
@@ -356,6 +358,23 @@ The table \ref{fig:MatrixDiffusionVerification} highlights the difference betwee
         \caption{Normalised histogram of particles' distribution along X at the end of the simulation}
     \end{subfigure}
     \caption{1e4 particles, 1e4 time steps, dt=1}
+    \label{fig:MatrixDiffusion4}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/positionsDl01Dr001RlPlRrPr1e5ts.png}
+        \caption{Probability condition on crossing between the two diffusivity regions and Dl = 0.1 while Dr = 0.01}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/histDl01Dr001RlPlRrPr1e5ts.png}
+        \caption{Normalised histogram of particles' distribution along X at the end of the simulation}
+    \end{subfigure}
+    \caption{1e4 particles, $10^5$ time steps, dt=1}
     \label{fig:MatrixDiffusion4}
 \end{figure}
 
