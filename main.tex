@@ -226,8 +226,18 @@ Figure \ref{fig:AbsorptionInTime} show the number of free particles, i.e. those 
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.5\textwidth]{images/compareAdsRatesDiff.png}
-    \caption{Reaction rates for different diffusivity values}
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=0.5\textwidth]{images/compareAdsRatesDiff.png}
+        \caption{Reaction rates for different diffusivity values}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}
+        \centering
+        \includegraphics[width=0.5\textwidth]{images/compareDiffNormAdsRates.png}
+        \caption{}
+    \end{subfigure}
+    \caption{Reaction rates for different diffusivity values from normalised surv time dist}
     \label{fig:reactionRatesDiff}
 \end{figure}
 
@@ -252,8 +262,18 @@ Figure \ref{fig:AbsorptionInTime} show the number of free particles, i.e. those 
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.5\textwidth]{images/compareAdsRatesApe.png}
-    \caption{Reaction rates for different values of aperture's width}
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=0.5\textwidth]{images/compareAdsRatesApe.png}
+        \caption{Reaction rates for different values of aperture's width}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}
+        \centering
+        \includegraphics[width=0.5\textwidth]{images/compareApeNormAdsRates.png}
+        \caption{Reaction rates for different values of aperture's width from normalised survival time distributions}
+    \end{subfigure}
+    \caption{Reaction rates for different aperture's widths from normalised survival time distributions}
     \label{fig:reactionRatesApe}
 \end{figure}
 
@@ -375,7 +395,7 @@ The table \ref{fig:MatrixDiffusionVerification} highlights the difference betwee
         \caption{Normalised histogram of particles' distribution along X at the end of the simulation}
     \end{subfigure}
     \caption{1e4 particles, $10^5$ time steps, dt=1}
-    \label{fig:MatrixDiffusion4}
+    \label{fig:MatrixDiffusion4_1e5ts}
 \end{figure}
 
 
