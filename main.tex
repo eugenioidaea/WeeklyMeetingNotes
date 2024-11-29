@@ -180,28 +180,21 @@ Figure \ref{fig:AbsorptionInTime} show the number of free particles, i.e. those 
 \FloatBarrier  % Prevents figures from floating past this point
 \section{Well-mixed vs diffusion-limited}
 \subsection{Survival time distribution and reaction rates}
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.5\textwidth]{images/survTimeDistCompare.png}
-    \caption{Survival time distribution curves from experimental well-mixed scenario and diffusion-limited experimental case.}
-    \label{fig:survTime}
-\end{figure}
-
 \begin{figure}[htbp]
     \centering
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{images/compareDecayDegradationRatesLin.png}
-        \caption{Reaction rates from experimental well-mixed scenario and diffusion-limited experimental case.}
+        \includegraphics[width=\textwidth]{images/survTimeDistCompare.png}
+        \caption{Survival time distribution curves from experimental well-mixed scenario and diffusion-limited experimental case.}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{images/compareDecayDegradationRatesLog.png}
+        \includegraphics[width=\textwidth]{images/compareDecayDegradationRates.png}
         \caption{Reaction rates from experimental well-mixed scenario and diffusion-limited experimental case.}
     \end{subfigure}
     \caption{$10^6$ particles and 500 time steps. The value of the exponent k for the analytical case is 0.5.}
-    \label{fig:survTimeRate}
+    \label{fig:survTimeAndRatesNorm}
 \end{figure}
 
 \FloatBarrier  % Prevents figures from floating past this point
@@ -224,20 +217,20 @@ Figure \ref{fig:AbsorptionInTime} show the number of free particles, i.e. those 
     \label{fig:survTimeDiff}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \includegraphics[width=0.5\textwidth]{images/compareAdsRatesDiff.png}
+        \includegraphics[width=\textwidth]{images/compareAdsRatesDiff.png}
         \caption{Reaction rates for different diffusivity values}
     \end{subfigure}
     \hfill
-    \begin{subfigure}
+    \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \includegraphics[width=0.5\textwidth]{images/compareDiffNormAdsRates.png}
-        \caption{}
+        \includegraphics[width=\textwidth]{images/compareDiffNormAdsRates.png}
+        \caption{Reaction rates for different diffusivity values from normalised surv time dist}
     \end{subfigure}
-    \caption{Reaction rates for different diffusivity values from normalised surv time dist}
+    \caption{Reaction rates for different diffusivity values}
     \label{fig:reactionRatesDiff}
 \end{figure}
 
@@ -260,20 +253,20 @@ Figure \ref{fig:AbsorptionInTime} show the number of free particles, i.e. those 
     \label{fig:survTimeape}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \includegraphics[width=0.5\textwidth]{images/compareAdsRatesApe.png}
-        \caption{Reaction rates for different values of aperture's width}
+        \includegraphics[width=\textwidth]{images/compareAdsRatesApe.png}
+        \caption{Reaction rates for different values of apertures' width}
     \end{subfigure}
     \hfill
-    \begin{subfigure}
+    \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \includegraphics[width=0.5\textwidth]{images/compareApeNormAdsRates.png}
+        \includegraphics[width=\textwidth]{images/compareApeNormAdsRates.png}
         \caption{Reaction rates for different values of aperture's width from normalised survival time distributions}
     \end{subfigure}
-    \caption{Reaction rates for different aperture's widths from normalised survival time distributions}
+    \caption{Reaction rates for different apertures' width}
     \label{fig:reactionRatesApe}
 \end{figure}
 
