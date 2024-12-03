@@ -123,6 +123,7 @@ where $p_s(t)$ is the survival probability distribution. Before the simulation, 
 \section{Absorbing boundaries}
 For the case where the particles which impact the lower and upper boundaries are absorbed, the analytical solution is not available. In the following example (Figure \ref{fig:finalPos} - Figure \ref{fig:AbsorptionInTime}), the particles which hit the boundaries have 100\% probability of being absorbed. An alternative which has been implemented in the code but is not currently shown allows to assign to the particles different absorption probability that is, the outcome of the impact of particle with the walls (either reflected or absorbed) will becomes a random variable which is drawn from a custom probability distribution.
 
+\FloatBarrier  % Prevents figures from floating past this point
 \subsection{Final positions}
 The final position of $10^4$ particles after 20 steps is shown in Figure \ref{fig:finalPos}.
 \begin{figure}[h]
@@ -132,6 +133,7 @@ The final position of $10^4$ particles after 20 steps is shown in Figure \ref{fi
     \label{fig:finalPos}
 \end{figure}
 
+\FloatBarrier  % Prevents figures from floating past this point
 \subsection{Cross section histograms}
 Figures \ref{fig:subplotVertFinal} and \ref{fig:subplotHorFinal} show the number of particles in two different regions of space at the end of the simulation. 
 \begin{figure}[htbp]
@@ -153,7 +155,8 @@ Figures \ref{fig:subplotVertFinal} and \ref{fig:subplotHorFinal} show the number
     \label{fig:Absorption}
 \end{figure}
 
-\subsection{Non-absorbed particles in time}
+\FloatBarrier  % Prevents figures from floating past this point
+\subsection{Non-adsorbed particles in time}
 Figure \ref{fig:AbsorptionInTime} show the number of free particles, i.e. those that were not absorbed, throughout time. The probability for the particles to be absorbed by the boundaries of the fracture is:
 \begin{equation}
     p_a = 100 \%
@@ -175,43 +178,6 @@ Figure \ref{fig:AbsorptionInTime} show the number of free particles, i.e. those 
     \end{subfigure}
     \caption{Non-absorbed particles in time normalised with initial total number of particles}
     \label{fig:AbsorptionInTime}
-\end{figure}
-
-\FloatBarrier  % Prevents figures from floating past this point
-\section{Well-mixed vs diffusion-limited}
-\subsection{Survival time distribution and reaction rates}
-\begin{figure}[htbp]
-    \centering
-    \begin{subfigure}[b]{0.45\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{images/survTimeDistCompare.png}
-        \caption{Survival time distribution curves from experimental well-mixed scenario and diffusion-limited experimental case.}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.45\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{images/compareDecayDegradationRates.png}
-        \caption{Reaction rates from experimental well-mixed scenario and diffusion-limited experimental case.}
-    \end{subfigure}
-    \caption{$10^6$ particles and 500 time steps. The value of the exponent k for the analytical case is 0.5.}
-    \label{fig:survTimeAndRates}
-\end{figure}
-
-\begin{figure}[htbp]
-    \centering
-    \begin{subfigure}[b]{0.45\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{images/survTimeDistCompareNorm.png}
-        \caption{Survival time distribution curves from experimental well-mixed scenario and diffusion-limited experimental case.}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.45\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{images/compareDecayDegradationRatesNorm.png}
-        \caption{Reaction rates from experimental well-mixed scenario and diffusion-limited experimental case.}
-    \end{subfigure}
-    \caption{$10^6$ particles and 500 time steps. The value of the exponent k for the analytical case is 0.5.}
-    \label{fig:survTimeAndRatesNorm}
 \end{figure}
 
 \FloatBarrier  % Prevents figures from floating past this point
@@ -321,6 +287,43 @@ Figure \ref{fig:AbsorptionInTime} show the number of free particles, i.e. those 
     \end{subfigure}
     \caption{Reaction rates for different adsorption probabilities}
     \label{fig:reactionRatesAdsProb}
+\end{figure}
+
+\FloatBarrier  % Prevents figures from floating past this point
+\section{Well-mixed vs diffusion-limited}
+\subsection{Survival time distribution and reaction rates}
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/survTimeDistCompare.png}
+        \caption{Survival time distribution curves from experimental well-mixed scenario and diffusion-limited experimental case.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/compareDecayDegradationRates.png}
+        \caption{Reaction rates from experimental well-mixed scenario and diffusion-limited experimental case.}
+    \end{subfigure}
+    \caption{$10^6$ particles and 500 time steps. The value of the exponent k for the analytical case is 0.5.}
+    \label{fig:survTimeAndRates}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/survTimeDistCompareNorm.png}
+        \caption{Survival time distribution curves from experimental well-mixed scenario and diffusion-limited experimental case.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/compareDecayDegradationRatesNorm.png}
+        \caption{Reaction rates from experimental well-mixed scenario and diffusion-limited experimental case.}
+    \end{subfigure}
+    \caption{$10^6$ particles and 500 time steps. The value of the exponent k for the analytical case is 0.5.}
+    \label{fig:survTimeAndRatesNorm}
 \end{figure}
 
 \FloatBarrier  % Prevents figures from floating past this point
