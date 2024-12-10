@@ -293,13 +293,19 @@ Figure \ref{fig:AbsorptionInTime} show the number of free particles, i.e. those 
 \subsubsection{Effect of characteristic times}
 \begin{figure}[htbp]
     \centering
-    \begin{subfigure}[b]{0.45\textwidth}
+    \begin{subfigure}[b]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/survTimeDistCompareTau.png}
         \caption{Effect of different characteristic times on survival time distribution curves}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.45\textwidth}
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/survTimeDistSemilogTau.png}
+        \caption{Reaction rates for different characteristic times from the semilog tails}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/ratesCompareTau.png}
         \caption{Reaction rates for different characteristic times}
@@ -311,15 +317,33 @@ Figure \ref{fig:AbsorptionInTime} show the number of free particles, i.e. those 
 \subsubsection{Effect of adsorption probabilitiy}
 \begin{figure}[htbp]
     \centering
-    \begin{subfigure}[b]{0.45\textwidth}
+    \begin{subfigure}[b]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/survTimeDistCompareAdsProb.png}
         \caption{Effect of different adsorption probabilities on survival time distribution curves}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.45\textwidth}
+    \begin{subfigure}[b]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/ratesCompareProb.png}
+        \caption{Reaction rates for different adsorption probabilities}
+    \end{subfigure}
+    \caption{$10^6$ particles and max 800 time steps with dt=0.1}
+    \label{fig:reactionRatesDiffTau}
+\end{figure}
+
+\subsubsection{Effect of adsorption probabilitiy}
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/survTimeDistSemilogProb.png}
+        \caption{Reaction rates for different characteristic times from the semilog tails}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/reactionVsProb.png}
         \caption{Reaction rates for different adsorption probabilities}
     \end{subfigure}
     \caption{$10^6$ particles and max 800 time steps with dt=0.1}
