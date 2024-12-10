@@ -301,19 +301,31 @@ Figure \ref{fig:AbsorptionInTime} show the number of free particles, i.e. those 
     \hfill
     \begin{subfigure}[b]{0.48\textwidth}
         \centering
+        \includegraphics[width=\textwidth]{images/ratesCompareTau.png}
+        \caption{Reaction rates for different characteristic times}
+    \end{subfigure}
+    \caption{$10^6$ particles and max 800 time steps with dt=0.1}
+    \label{fig:survTimeDistTau}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
         \includegraphics[width=\textwidth]{images/survTimeDistSemilogTau.png}
         \caption{Reaction rates for different characteristic times from the semilog tails}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.48\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{images/ratesCompareTau.png}
+        \includegraphics[width=\textwidth]{images/reactionVsTau.png}
         \caption{Reaction rates for different characteristic times}
     \end{subfigure}
     \caption{$10^6$ particles and max 800 time steps with dt=0.1}
-    \label{fig:survTimeDiffTau}
+    \label{fig:reactionRatesTau}
 \end{figure}
 
+\FloatBarrier  % Prevents figures from floating past this point
 \subsubsection{Effect of adsorption probabilitiy}
 \begin{figure}[htbp]
     \centering
@@ -329,10 +341,9 @@ Figure \ref{fig:AbsorptionInTime} show the number of free particles, i.e. those 
         \caption{Reaction rates for different adsorption probabilities}
     \end{subfigure}
     \caption{$10^6$ particles and max 800 time steps with dt=0.1}
-    \label{fig:reactionRatesDiffTau}
+    \label{fig:survTimeDistProb}
 \end{figure}
 
-\subsubsection{Effect of adsorption probabilitiy}
 \begin{figure}[htbp]
     \centering
     \begin{subfigure}[b]{0.48\textwidth}
@@ -347,7 +358,7 @@ Figure \ref{fig:AbsorptionInTime} show the number of free particles, i.e. those 
         \caption{Reaction rates for different adsorption probabilities}
     \end{subfigure}
     \caption{$10^6$ particles and max 800 time steps with dt=0.1}
-    \label{fig:reactionRatesDiffTau}
+    \label{fig:reactionRatesProb}
 \end{figure}
 
 \FloatBarrier  % Prevents figures from floating past this point
