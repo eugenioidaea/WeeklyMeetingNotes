@@ -502,23 +502,42 @@ The table \ref{fig:MatrixDiffusionVerification} highlights the difference betwee
     \label{fig:MatrixDiffusion4}
 \end{figure}
 
+\subsection{Radioactive decay in the porous matrix}
+\FloatBarrier  % Prevents figures from floating past this point
+\subsubsection{Effect of adsorption probabilitiy}
 \begin{figure}[htbp]
     \centering
-    \begin{subfigure}[b]{0.45\textwidth}
+    \begin{subfigure}[b]{0.48\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{images/positionsDl01Dr001RlPlRrPr1e5ts.png}
-        \caption{Probability condition on crossing between the two diffusivity regions and Dl = 0.1 while Dr = 0.01}
+        \includegraphics[width=\textwidth]{images/finalPositionMatrixDecay.png}
+        \caption{Effect of different adsorption probabilities on survival time distribution curves}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.45\textwidth}
+    \begin{subfigure}[b]{0.48\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{images/histDl01Dr001RlPlRrPr1e5ts.png}
-        \caption{Normalised histogram of particles' distribution along X at the end of the simulation}
+        \includegraphics[width=\textwidth]{images/survTimeDistMatrixDecay.png}
+        \caption{Reaction rates for different adsorption probabilities}
     \end{subfigure}
-    \caption{1e4 particles, $10^5$ time steps, dt=1}
-    \label{fig:MatrixDiffusion4_1e5ts}
+    \caption{$10^6$ particles and max 800 time steps with dt=0.1}
+    \label{fig:survTimeDistMatrixDecay}
 \end{figure}
 
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/ratesMatrixDecay.png}
+        \caption{Reaction rates for different characteristic times from the semilog tails}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/survTimeDistSemilogMatrixdecay.png}
+        \caption{Reaction rates for different adsorption probabilities}
+    \end{subfigure}
+    \caption{$10^6$ particles and max 800 time steps with dt=0.1}
+    \label{fig:reactionRatesMatrixDecay}
+\end{figure}
 
 \FloatBarrier  % Prevents figures from floating past this point
 \bibliographystyle{plain}  % The style of your bibliography (e.g., plain, ieee, acm, etc.)
