@@ -517,7 +517,7 @@ The table \ref{fig:MatrixDiffusionVerification} highlights the difference betwee
         \includegraphics[width=\textwidth]{images/survTimeDistMatrixDecay.png}
         \caption{Survival time distributions for different radioactive decay in the porous matrix.}
     \end{subfigure}
-    \caption{$10^4$ particles and max $10^4$ time steps with dt=1, Df=0.01 and Dm=0.001.}
+    \caption{$10^6$ particles and max $10^6$ time steps with dt=1, Df=0.01 and Dm=0.001.}
     \label{fig:survTimeDistMatrixDecay}
 \end{figure}
 
@@ -534,8 +534,25 @@ The table \ref{fig:MatrixDiffusionVerification} highlights the difference betwee
         \includegraphics[width=\textwidth]{images/survTimeDistSemilogMatrixdecay.png}
         \caption{Reaction rates for different radioactive decays in the porous matrix.}
     \end{subfigure}
-    \caption{$10^4$ particles and max $10^4$ time steps with dt=1, Df=0.01 and Dm=0.001.}
+    \caption{$10^6$ particles and max $10^6$ time steps with dt=1, Df=0.01 and Dm=0.001.}
     \label{fig:reactionRatesMatrixDecay}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/ratesMatrixDecaySpline.png}
+        \caption{Reaction rates for different radioactive decays in the porous matrix.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/effVsDecayRates.png}
+        \caption{Effective reaction rate vs radioactive decays in the porous matrix.}
+    \end{subfigure}
+    \caption{$10^6$ particles and max $10^6$ time steps with dt=1, Df=0.01 and Dm=0.001.}
+    \label{fig:effVsRadioactivedecays}
 \end{figure}
 
 \FloatBarrier  % Prevents figures from floating past this point
