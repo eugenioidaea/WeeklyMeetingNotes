@@ -542,8 +542,25 @@ The table \ref{fig:MatrixDiffusionVerification} highlights the difference betwee
     \centering
     \begin{subfigure}[b]{0.48\textwidth}
         \centering
+        \includegraphics[width=\textwidth]{images/survTimeDistLogBinsMatrixdecay.png}
+        \caption{Survival time distribution from log-binning.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/ratesMatrixDecayLog.png}
+        \caption{Reaction rates for different radioactive decays in the porous matrix from the log-binning of the surv time distribution.}
+    \end{subfigure}
+    \caption{$10^6$ particles and max $10^6$ time steps with dt=1, Df=0.01 and Dm=0.001.}
+    \label{fig:reactionRatesMatrixDecayLogBins}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
         \includegraphics[width=\textwidth]{images/ratesMatrixDecaySpline.png}
-        \caption{Reaction rates for different radioactive decays in the porous matrix.}
+        \caption{Reaction rates for different radioactive decays in the porous matrix from splines computed in figure \ref{fig:reactionRatesMatrixDecay}.}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.48\textwidth}
@@ -554,6 +571,20 @@ The table \ref{fig:MatrixDiffusionVerification} highlights the difference betwee
     \caption{$10^6$ particles and max $10^6$ time steps with dt=1, Df=0.01 and Dm=0.001.}
     \label{fig:effVsRadioactivedecays}
 \end{figure}
+Overall, the rates from figure \ref{fig:reactionRatesMatrixDecay} (a) and (b) are similar and are comparable to those from figure \ref{fig:effVsRadioactivedecays} (a), which represent the derivatives of the cubic splines which fit the points in figure \ref{fig:reactionRatesMatrixDecay} (b). Last attempt for getting a smoother derivative is by binning the values from figure \ref{fig:reactionRatesMatrixDecay} (b) into log-spaced classes and compute the derivative of their average values.
+
+\FloatBarrier  % Prevents figures from floating past this point
+\section{OpenPNM}
+Some tutorials from: $https://openpnm.org/_examples/index.html$
+\subsection{Simulating Single Phase Transport}
+Hagan-Poiseuille equation for fluid flow through a cylindrical tube:
+\begin{equation}
+    Q=\frac{\pi R^4}{8 \mu L} \Delta P
+\end{equation}
+Conductance $g_h$:
+\begin{equation}
+    Q=g_h \Delta P
+\end{equation}
 
 \FloatBarrier  % Prevents figures from floating past this point
 \bibliographystyle{plain}  % The style of your bibliography (e.g., plain, ieee, acm, etc.)
