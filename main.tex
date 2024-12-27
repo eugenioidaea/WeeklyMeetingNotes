@@ -586,6 +586,24 @@ Conductance $g_h$:
     Q=g_h \Delta P
 \end{equation}
 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/poiseuilleFlow.png}
+    \caption{Hagen-Poiseuille flow verification using OpenPNM}
+    \label{fig:poiseuille}
+\end{figure}
+
+Input data:
+\begin{itemize}
+    \item inlet pressure $P_{in} = 2 Pa = 2 kg/s^2m$;
+    \item outlet flow rate $Q = 1 m^3/s$;
+    \item conductance $g_h = 0.7035 m^4 s/kg$
+\end{itemize}
+Output:
+\begin{itemize}
+    \item outlet pressure $P_{out} = 0.578 Pa = 0.578 kg/s^2m$
+\end{itemize}
+
 \FloatBarrier  % Prevents figures from floating past this point
 \bibliographystyle{plain}  % The style of your bibliography (e.g., plain, ieee, acm, etc.)
 \bibliography{references}  % Name of the .bib file without the extension
