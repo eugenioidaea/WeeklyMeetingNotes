@@ -576,23 +576,23 @@ Overall, the rates from figure \ref{fig:reactionRatesMatrixDecay} (a) and (b) ar
 \FloatBarrier  % Prevents figures from floating past this point
 \section{OpenPNM}
 Some tutorials from: $https://openpnm.org/_examples/index.html$
+
+\FloatBarrier  % Prevents figures from floating past this point
 \subsection{Simulating Single Phase Transport}
 Hagan-Poiseuille equation for fluid flow through a cylindrical tube:
 \begin{equation}
-    Q=\frac{\pi R^4}{8 \mu L} \Delta P
+    Q=\frac{\pi R^4}{8 \mu L} (P_{in}-P_{out})
 \end{equation}
 Conductance $g_h$:
 \begin{equation}
-    Q=g_h \Delta P
+    Q=g_h (P_{in}-P_{out})
 \end{equation}
-
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.5\textwidth]{images/poiseuilleFlow.png}
     \caption{Hagen-Poiseuille flow verification using OpenPNM}
     \label{fig:poiseuille}
 \end{figure}
-
 Input data:
 \begin{itemize}
     \item inlet pressure $P_{in} = 2 Pa = 2 kg/s^2m$;
@@ -602,6 +602,27 @@ Input data:
 Output:
 \begin{itemize}
     \item outlet pressure $P_{out} = 0.578 Pa = 0.578 kg/s^2m$
+\end{itemize}
+
+\FloatBarrier  % Prevents figures from floating past this point
+\subsection{3D cubic network with homogeneous pore and throat geometries}
+Input data:
+\begin{itemize}
+    \item throat length: $1e-2$
+    \item throat diameter: $1e-4$
+    \item pore diameter: $1e-3$
+    \item water viscosity: $0.00089$
+    \item pressure left: $2$
+    \item pressure right: $1$
+\end{itemize}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/3DcubicPoreNet.png}
+    \caption{Pressure in a cubic porous network}
+    \label{fig:3DcubicPN}
+\end{figure}
+\begin{itemize}
+    \item absolute permeability: $2.817e-14$
 \end{itemize}
 
 \FloatBarrier  % Prevents figures from floating past this point
