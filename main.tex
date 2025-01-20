@@ -403,6 +403,7 @@ Figure \ref{fig:AbsorptionInTime} show the number of free particles, i.e. those 
 For each particle crossing from the fracture to the porous matrix, a random number from a uniform distribution over the interval 0 and 1 is drawn. If this number is higher than a threshold then the particle crosses the boundary otherwise it is elastically reflected. Following the approach of \cite{salamon2006review} we set the probability of a particle crossing the fracture-porous matrix boundary equal to:
 \begin{equation}
     P_f = \frac{\sqrt{D_f}}{\sqrt{D_f}+\sqrt{D_m}}
+    \label{eq:Salamon}
 \end{equation}
 \begin{figure}[htbp]
     \centering
@@ -504,6 +505,7 @@ The table \ref{fig:MatrixDiffusionVerification} highlights the difference betwee
 
 \FloatBarrier  % Prevents figures from floating past this point
 \subsection{Radioactive decay in the porous matrix}
+The aim of the following numerical experiments is to compare the degradation of particles under the effects of radioactive decay acting in different regions of the domain (fracture and porous matrix).
 \begin{figure}[htbp]
     \centering
     \begin{subfigure}[b]{0.48\textwidth}
@@ -517,7 +519,7 @@ The table \ref{fig:MatrixDiffusionVerification} highlights the difference betwee
         \includegraphics[width=\textwidth]{images/survTimeDistMatrixDecay.png}
         \caption{Survival time distributions for different radioactive decay in the porous matrix.}
     \end{subfigure}
-    \caption{$10^6$ particles and max $10^6$ time steps with dt=1, Df=0.01 and Dm=0.001.}
+    \caption{Different radioactive decay rates applied throughout the whole domain (fracture and porous matrix) vs decay rates for particles in porous matrix only. Setup: $10^6$ particles and max $10^6$ time steps with dt=1, Df=0.01 and Dm=0.001. The reflection probability is determined by Eq. \ref{eq:Salamon}.}
     \label{fig:survTimeDistMatrixDecay}
 \end{figure}
 
@@ -543,7 +545,7 @@ The table \ref{fig:MatrixDiffusionVerification} highlights the difference betwee
     \begin{subfigure}[b]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/survTimeDistLogBinsMatrixdecay.png}
-        \caption{Survival time distribution from log-binning.}
+        \caption{Survival time distribution from log-binning the values from figure \ref{fig:reactionRatesMatrixDecay} b.}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.48\textwidth}
@@ -560,7 +562,7 @@ The table \ref{fig:MatrixDiffusionVerification} highlights the difference betwee
     \begin{subfigure}[b]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/ratesMatrixDecaySpline.png}
-        \caption{Reaction rates for different radioactive decays in the porous matrix from splines computed in figure \ref{fig:reactionRatesMatrixDecay}.}
+        \caption{Reaction rates for different radioactive decays in the porous matrix from splines computed in figure \ref{fig:reactionRatesMatrixDecay} b.}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.48\textwidth}
@@ -571,11 +573,42 @@ The table \ref{fig:MatrixDiffusionVerification} highlights the difference betwee
     \caption{$10^6$ particles and max $10^6$ time steps with dt=1, Df=0.01 and Dm=0.001.}
     \label{fig:effVsRadioactivedecays}
 \end{figure}
-Overall, the rates from figure \ref{fig:reactionRatesMatrixDecay} (a) and (b) are similar and are comparable to those from figure \ref{fig:effVsRadioactivedecays} (a), which represent the derivatives of the cubic splines which fit the points in figure \ref{fig:reactionRatesMatrixDecay} (b). Last attempt for getting a smoother derivative is by binning the values from figure \ref{fig:reactionRatesMatrixDecay} (b) into log-spaced classes and compute the derivative of their average values.
+Overall, the rates from figure \ref{fig:reactionRatesMatrixDecay} (a) and (b) compare well with those from figure \ref{fig:effVsRadioactivedecays} (a), which represent the derivatives of the cubic splines which fit the points in figure \ref{fig:reactionRatesMatrixDecay} (b). Last attempt for getting a smoother derivative is by binning the values from figure \ref{fig:reactionRatesMatrixDecay} (b) into log-spaced classes and compute the derivative of their average values.
 
 \FloatBarrier  % Prevents figures from floating past this point
 \section{OpenPNM}
-Some tutorials from: $https://openpnm.org/_examples/index.html$
+Some tutorials adapted from: $https://openpnm.org/_examples/index.html$
+
+\subsection{Network structures}
+Some examples of pore-throat networks based on a cubic element.
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/3dStandardCubic.png}
+        \caption{Standard 3x4x5 cubic network.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/3dConnectivity14.png}
+        \caption{Cubic network where each node has 14 connections instead of 6.}
+    \end{subfigure}
+    \\
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/3dBcc.png}
+        \caption{Body cubic centered network.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/3dFcc.png}
+        \caption{Face centered cubic network.}
+    \end{subfigure}
+    \caption{Some examples of cubic networks.}
+    \label{fig:CubicNetworks}
+\end{figure}
 
 \FloatBarrier  % Prevents figures from floating past this point
 \subsection{Simulating Single Phase Transport}
