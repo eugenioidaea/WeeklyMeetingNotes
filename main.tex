@@ -568,7 +568,7 @@ The aim of the following numerical experiments is to compare the degradation of 
     \begin{subfigure}[b]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/effVsDecayRates.png}
-        \caption{Effective reaction rate vs radioactive decays in the porous matrix.}
+        \caption{Effective reaction rate vs radioactive decays in the porous matrix. The radioactive decay in the porous matrix ranges between 0.001 and 0.1.}
     \end{subfigure}
     \caption{$10^6$ particles and max $10^6$ time steps with dt=1, Df=0.01 and Dm=0.001.}
     \label{fig:effVsRadioactivedecays}
@@ -577,7 +577,13 @@ Overall, the rates from figure \ref{fig:reactionRatesMatrixDecay} (a) and (b) co
 
 \FloatBarrier  % Prevents figures from floating past this point
 \subsection{Effect of molecular diffusion on radioactive decay}
-
+As the molecular diffusion of particles in the porous matrix decreases, the effective decay rate decreases as well.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/kEffVsDfDmRatio.png}
+    \caption{Effective radioactive decay for different values of molecular diffusion in the porous matrix. The characteristic time for all the simulation is $\tau_d=(u_b-l_b)^2/D_f=4/0.01=400$ while $D_m$ ranges between 0.01 and 0.00001. The value of the decay rate in the porous matrix is 0.01 and does not change between realisations.}
+    \label{fig:KeffVsDm}
+\end{figure}
 
 \FloatBarrier  % Prevents figures from floating past this point
 \section{OpenPNM}
