@@ -669,6 +669,38 @@ Input data:
 \end{itemize}
 
 \FloatBarrier  % Prevents figures from floating past this point
+\subsection{Effective diffusion}
+The effective diffusion characteristic of a network of fractures is
+\begin{equation}
+    D_{eff}=\frac{k^{eff}_D}{A^{tot}} l^{tot}
+\end{equation}
+where $k^{eff}_D$ is
+\begin{equation}
+    k^{eff}_D = \frac{Q^{tot}_{D}}{C_0-C_1}.
+\end{equation}
+First, a network of fractures with a cubic building block is created
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/fromOpenPNM/rectangular2Dpn.png}
+    \caption{2D network of fractures}
+    \label{fig:Network}
+\end{figure}
+where the width of the lines is proportional to the diffusivity of the throat which is lognormally distributed
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/fromOpenPNM/effDiffLognormalDist.png}
+    \caption{Lognormal distribution of diffusivities}
+    \label{fig:LogDiff}
+\end{figure}
+and then a Fickian diffusion model is solved
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/fromOpenPNM/concentrationHeatMap.png}
+    \caption{Concentration in network of fractures}
+    \label{fig:ConcInFractures}
+\end{figure}
+
+\FloatBarrier  % Prevents figures from floating past this point
 \bibliographystyle{plain}  % The style of your bibliography (e.g., plain, ieee, acm, etc.)
 \bibliography{references}  % Name of the .bib file without the extension
 
