@@ -670,8 +670,8 @@ Input data:
 
 \FloatBarrier  % Prevents figures from floating past this point
 \subsection{Effective diffusion}
-\subsection{Test 1D}
-To  verify that the \texttt{FickianDiffusion} method provided by the OpenfPNM works as expected, we compare the analytical solution of the Fick's law of diffusion with result provided by the \texttt{FickianDiffusion} for the elementary case where the fracture network counts with only one 1D fracture, i.e. 2 nodes and 1 throat (Fig. \ref{fig:OneFracture}).
+\subsubsection{Test 1D}
+To  verify that the \texttt{FickianDiffusion} method provided by the OpenPNM works as expected, we compare the analytical solution of the Fick's law of diffusion with result provided by the \texttt{FickianDiffusion} for the elementary case where the fracture network counts with only one 1D fracture, i.e. 2 nodes and 1 throat (Fig. \ref{fig:OneFracture}).
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.5\textwidth]{images/fromOpenPNM/oneFracture.png}
@@ -680,16 +680,16 @@ To  verify that the \texttt{FickianDiffusion} method provided by the OpenfPNM wo
 \end{figure}
 Geometric data and boundary conditions are:
 \begin{itemize}
-    \item throat length [m] = $L = 10^{-3}$;
-    \item throat diameter [m] = $10^{-4}$;
-    \item pore diameter [m] = $2*10^{-4}$;
-    \item molecular diffusion [m2/s] = $D = 10^{-3}$;
-    \item concentration at the inlet [-] = $C_{in} = 10$;
-    \item concentration at the outlet [-] = $C_{out} = 5$.
+    \item throat length [m]: $L = 10^{-3}$;
+    \item throat diameter [m]: $10^{-4}$;
+    \item pore diameter [m]: $2*10^{-4}$;
+    \item molecular diffusion [m2/s]: $D_{mol} = 10^{-3}$;
+    \item concentration at the inlet [-]: $C_{in} = 10$;
+    \item concentration at the outlet [-]: $C_{out} = 5$.
 \end{itemize}
 The diffusive flux is defined as:
 \begin{equation}
-    Q_D = D \frac{C_{in}-C_{out}}{L} A = k_D (C_{in}-C_{out})
+    Q_D = D_{mol} \frac{C_{in}-C_{out}}{L} A = k_D (C_{in}-C_{out})
 \end{equation}
 where $A [m^2]$ is the cross sectional area of the throat and $k_D [m^3/s]$ is the diffusive conductance.
 The expected value of the diffusive flux is
@@ -701,24 +701,24 @@ that matches the value computed by \texttt{FickianDiffusion} method.
     \centering
     \includegraphics[width=0.5\textwidth]{images/fromOpenPNM/oneFractureSolution.png}
     \caption{Concentration colour map for Fickian diffusion through a 1D fracture}
-    \label{fig:OneFracture}
+    \label{fig:OneFractureSolution}
 \end{figure}
 In this case the molecular diffusion is the same as the effective diffusion.
 
 \FloatBarrier  % Prevents figures from floating past this point
-\subsection{Test 2D}
+\subsubsection{Test 2D}
 The effective diffusion characteristic of a network of fractures is
 \begin{equation}
     D_{eff}=\frac{Q_D*L}{A*(C_1-C_0)}
     \label{eq:EffDiff}
 \end{equation}
 where $Q_D$ is the diffusive flux, $L$ is the overall length of the domain, $A$ is the cross-section area of the pore network and $C_i$ is the fixed boundary concentration value.
-Firstly, a network of fractures characterised by a cubic building block is created. Pores and throats diameters and throat length is the same as for the 1D case. The diffusive conductance values of the throats are sampled from a lognormal distribution with standard deviation $s=0.5$, the location parameter $loc=0$ and the scale factor $scale=D=10^{-3}$. Figure \ref{fig:Network} represents the cubic pore-throat network and the line width is proportional to the diffusive conductance of the throats.
+Firstly, a network of fractures characterised by a cubic building block is created. The sizes of the elementary fracture, i.e. lengths and diameters, are the same as for the 1D case. The diffusive conductance values of the throats are sampled from a lognormal distribution with standard deviation $s=0.5$, the location parameter $loc=0$ and the scale factor $scale=D_{mol}=10^{-3}$. Figure \ref{fig:Network} represents the cubic pore-throat network and the line width is proportional to the diffusive conductance of the throats.
 \FloatBarrier  % Prevents figures from floating past this point
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.5\textwidth]{images/fromOpenPNM/rectangular2Dpn.png}
-    \caption{2D network of fractures. The width of the lines is proportional to the diffusivity of the throats}
+    \caption{2D network of fractures. The width of the lines is proportional to the diffusive conductance of the throats}
     \label{fig:Network}
 \end{figure}
 \FloatBarrier  % Prevents figures from floating past this point
@@ -728,7 +728,7 @@ Firstly, a network of fractures characterised by a cubic building block is creat
     \caption{Lognormal distribution of diffusive conductances}
     \label{fig:LogDiff}
 \end{figure}
-Secondly, the flow rate $Q^{tot}_D$ is computed using the \texttt{FickianDiffusion} from OpenPNM and the spatial distribution of the concentration is reported in figure \ref{fig:ConcInFractures}.
+Secondly, the flow rate $Q_D$ is computed using the \texttt{FickianDiffusion} from OpenPNM and the spatial distribution of the concentration is reported in figure \ref{fig:ConcInFractures}.
 \FloatBarrier  % Prevents figures from floating past this point
 \begin{figure}[h]
     \centering
@@ -736,9 +736,17 @@ Secondly, the flow rate $Q^{tot}_D$ is computed using the \texttt{FickianDiffusi
     \caption{Concentration in network of fractures}
     \label{fig:ConcInFractures}
 \end{figure}
-Eventually, the effective diffusion can be calculated using \ref{eq:EffDiff}
-
-the flow rate is $Q_{tot}=0.00043$ $m^3/s$. Since the cross-section area of all the throats at the outlet is $3.926*10^{-8}$ $m^2$, it follows that the effective diffusion is $D_{eff}=11036$ $m/s$. Should it be multiplied by which throat length?
+Eventually, the effective diffusion can be calculated using equation \ref{eq:EffDiff}
+\begin{equation}
+    D_{eff} [m^2/s]=\frac{5.785*10^{-3}*10^{-2}}{10^{-5}*(10-5)}=1.157
+    \label{eq:EffDiffDomain}
+\end{equation}
+which is three orders of magnitude higher than the molecular diffusion used as scale factor for the lognormal distribution of conductance values.
+If instead of the domain length and the cross-section area of the fracture network, the effective diffusion is computed using the throat's length and cross-section area, the effective diffusion becomes
+\begin{equation}
+    D_{eff} [m^2/s]=\frac{5.785*10^{-3}*10^{-3}}{7.85*10^{-9}*(10-5)}=144.1.
+    \label{eq:EffDiffFracture}
+\end{equation}
 
 \FloatBarrier  % Prevents figures from floating past this point
 \bibliographystyle{plain}  % The style of your bibliography (e.g., plain, ieee, acm, etc.)
