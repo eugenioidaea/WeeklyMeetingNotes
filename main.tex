@@ -581,7 +581,7 @@ As the molecular diffusion of particles in the porous matrix decreases, the effe
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.5\textwidth]{images/kEffVsDfDmRatio.png}
-    \caption{Effective radioactive decay for different values of molecular diffusion in the porous matrix. The characteristic time for all the simulation is $\tau_d=(u_b-l_b)^2/D_f=4/0.01=400$ while $D_m$ ranges between 0.01 and 0.00001. The value of the decay rate in the porous matrix is 0.01 and does not change between realisations.}
+    \caption{Effective radioactive decay for different values of molecular diffusion in the porous matrix. The characteristic time for all the simulation is $\tau_d=(u_b-l_b)^2/D_f=4/0.01=400$ while $D_m$ ranges between 0.01 and 0.00001. The value of the decay rate in the fracture is 0.01 and does not change between realisations.}
     \label{fig:KeffVsDm}
 \end{figure}
 
@@ -713,7 +713,7 @@ The effective diffusion characteristic of a network of fractures is
     \label{eq:EffDiff}
 \end{equation}
 where $Q_D$ is the diffusive flux, $L$ is the overall length of the domain, $A$ is the cross-section area of the pore network and $C_i$ is the fixed boundary concentration value.
-Firstly, a network of fractures characterised by a cubic building block is created. The sizes of the elementary fracture, i.e. lengths and diameters, are the same as for the 1D case. The diffusive conductance values of the throats are sampled from a lognormal distribution with standard deviation $s=0.5$, the location parameter $loc=0$ and the scale factor $scale=D_{mol}=10^{-3}$. Figure \ref{fig:Network} represents the cubic pore-throat network and the line width is proportional to the diffusive conductance of the throats.
+Firstly, a network of fractures characterised by a cubic building block is created. Pores are spherical and throats are cylindrical. The sizes of the elementary fracture, i.e. lengths and diameters, are the same as for the 1D case. The diffusive conductance values of the throats are sampled from a lognormal distribution with standard deviation $s=0.5$, the location parameter $loc=0$ and the scale factor $scale=D_{mol}=10^{-3}$. Figure \ref{fig:Network} represents the cubic pore-throat network and the line width is proportional to the diffusive conductance of the throats.
 \FloatBarrier  % Prevents figures from floating past this point
 \begin{figure}[h]
     \centering
@@ -744,8 +744,18 @@ Eventually, the effective diffusion can be calculated using equation \ref{eq:Eff
 which is three orders of magnitude higher than the molecular diffusion used as scale factor for the lognormal distribution of conductance values.
 If instead of the domain length and the cross-section area of the fracture network, the effective diffusion is computed using the throat's length and cross-section area, the effective diffusion becomes
 \begin{equation}
-    D_{eff} [m^2/s]=\frac{5.785*10^{-3}*10^{-3}}{7.85*10^{-9}*(10-5)}=144.1.
+    D_{eff} [m^2/s]=\frac{5.785*10^{-3}*10^{-3}}{7.85*10^{-8}*(10-5)}=14.41.
     \label{eq:EffDiffFracture}
+\end{equation}
+When the molecular diffusion and the effective diffusion are known, it is possible to leverage on the definition of effective diffusion
+\begin{equation}
+    D_{eff} [m^2/s]=D_{mol}\frac{\Phi}{\tau}
+    \label{eq:EffDiffDef}
+\end{equation}
+to evaluate the tortuosity of the fracture network. The porosity of our system, i.e. the ratio between void and total domain volume, is $\Phi=1.8*10^{-2}$. It follows that the tortuosity is
+\begin{equation}
+    \tau = 1.8*10^{-2}\frac{10^{-3}}{1.157} = 1.6*10^{-5}.
+    \label{eq:Tortuosity}
 \end{equation}
 
 \FloatBarrier  % Prevents figures from floating past this point
