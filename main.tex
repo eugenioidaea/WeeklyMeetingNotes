@@ -183,6 +183,7 @@ Figure \ref{fig:AbsorptionInTime} show the number of free particles, i.e. those 
 \FloatBarrier  % Prevents figures from floating past this point
 \subsection{Adsorbing boundaries: survival time distributions and effective reaction rates}
 \subsubsection{Effect of diffusivity coefficient}
+The following tables show the survival time distributions and effective reaction rates for particles' diffusion within a single fracture with reactive boundaries: as soon as the particles' trajectories cross the fracture's walls the particles get adsorbed (react) and disappear from the domain or, in other words, the adsorption probability is 100\%. The maximum number of time steps is 80000 and the time step is constant and equal to $dt=0.1$ which makes the overall maximum length of the simulation equal to 8000. Since the characteristic time is defined as $\tau_d=l^2/D_f$, where the fracture's aperture is $l=2$ the value of $\tau_D$ increases as the fracture's diffusion $D_f$ decreases. The number of particles for each simulation is $10^6$.
 \begin{figure}[htbp]
     \centering
     \begin{subfigure}[b]{0.45\textwidth}
@@ -670,7 +671,7 @@ Input data:
 
 \FloatBarrier  % Prevents figures from floating past this point
 \subsection{Effective diffusion}
-\subsubsection{Test 1D}
+\subsubsection{Test 1D and single fracture}
 To  verify that the \texttt{FickianDiffusion} method provided by the OpenPNM works as expected, we compare the analytical solution of the Fick's law of diffusion with result provided by the \texttt{FickianDiffusion} for the elementary case where the fracture network counts with only one 1D fracture, i.e. 2 nodes and 1 throat (Fig. \ref{fig:OneFracture}).
 \begin{figure}[h]
     \centering
@@ -681,7 +682,7 @@ To  verify that the \texttt{FickianDiffusion} method provided by the OpenPNM wor
 Geometric data and boundary conditions are:
 \begin{itemize}
     \item throat length [m]: $L = 10^{-3}$;
-    \item throat diameter [m]: $10^{-4}$;
+    \item throat diameter [m]: $d_t = 10^{-4}$;
     \item pore diameter [m]: $2*10^{-4}$;
     \item molecular diffusion [m2/s]: $D_{mol} = 10^{-3}$;
     \item concentration at the inlet [-]: $C_{in} = 10$;
@@ -703,7 +704,24 @@ that matches the value computed by \texttt{FickianDiffusion} method.
     \caption{Concentration colour map for Fickian diffusion through a 1D fracture}
     \label{fig:OneFractureSolution}
 \end{figure}
-In this case the molecular diffusion is the same as the effective diffusion.
+Depending on the choice of the cross-section area considered, the effective diffusion is
+\begin{equation}
+    D_{eff}=\frac{Q_D*L}{A*(C_1-C_0)}
+    \label{eq:EffDiff1Frac}
+\end{equation}
+if
+\begin{itemize}
+    \item $A=d_t^2=10^{-8} m^2$ the effective diffusion is $D_{eff}=7.85*10^{-4} m^2/s$
+    \item $A=\pi*d_t^2/4=7.85*10^{-9} m^2$ the effective diffusion is $D_{eff}=D_{mol}=10^{-3} m^2/s$.
+\end{itemize}
+
+\FloatBarrier  % Prevents figures from floating past this point
+\subsubsection{Test 1D and multiple fractures with uniform diffusive conductances}
+Same for 10 pores and 9 fractures network.
+
+\FloatBarrier  % Prevents figures from floating past this point
+\subsubsection{Test 1D and multiple fractures with heterogeneous diffusive conductances}
+
 
 \FloatBarrier  % Prevents figures from floating past this point
 \subsubsection{Test 2D}
