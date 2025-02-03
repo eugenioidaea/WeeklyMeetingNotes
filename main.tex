@@ -758,16 +758,16 @@ The result is shown in figure \ref{fig:Network1Dconc}.
 \end{figure}
 The numerical inputs for this test are:
 \begin{itemize}
-    \item pore spacing = $10^{-3} m$;
+    \item pore spacing = $10^{-3} \: m$;
     \item pore diameter = $spacing/10$;
-    \item molecular diffusion = $10^{-5} m^2/$;
+    \item molecular diffusion = $10^{-5} \: m^2/$;
     \item diffusive conductance = 2.26069e-12, 6.92748e-13, 2.77110e-13, 2.81421e-13, 3.44455e-13,
        7.27295e-13, 7.37918e-14, 4.92028e-13, 3.65745e-13;
 \end{itemize}
 The output are:
 \begin{itemize}
-    \item flow rate $Q_d = 1.58*10^{-13}$;
-    \item conductance $K_d = 2.844*10^{-13}$.
+    \item flow rate $Q_d = 1.58*10^{-13} \: m^3/s$;
+    \item conductance $K_d = 2.844*10^{-13} \: m^3/s$.
 \end{itemize}
 
 \FloatBarrier  % Prevents figures from floating past this point
@@ -775,12 +775,12 @@ The output are:
 
 \FloatBarrier  % Prevents figures from floating past this point
 \subsubsection{Test 2D: fractures with heterogeneous diffusive conductances in series and parallel}
-When the throats of a fractured network are connected both in series and in parallel, the conductance of the system $K_d$ corresponds to the geometric mean \ref{eq:GeomMean} of the collection of conductance values of each throat.
+When the throats of a fractured network are connected both in series and in parallel, the conductance of the system $K_d$ corresponds to the geometric mean (Eq. \ref{eq:GeomMean}) of the collection of conductance values of each throat.
 \begin{equation}
     \left( \prod_{i=1}^n K_{di} \right)^{1/n} = exp \left(\frac{1}{n} \sum_{i=1}^n ln(K_{di}) \right) = \sqrt[n]{K_{d1}K_{d2}..K_{dn}}
     \label{eq:GeomMean}
 \end{equation}
-This is confirmed by the numerical setup in figure \ref{fig:Network2D} with the following inputs:
+This is confirmed by the numerical setup in figure \ref{fig:Network2D} which is characterised by the following inputs:
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.5\textwidth]{images/fromOpenPNM/rectangular2Dpn100x10.png}
@@ -788,7 +788,25 @@ This is confirmed by the numerical setup in figure \ref{fig:Network2D} with the 
     \label{fig:Network2D}
 \end{figure}
 \begin{itemize}
-    \item spacing $10^{-3} m$;
+    \item spacing $10^{-3} \: m$;
+    \item pore diameter $spacing/10$
+    \item molecular diffusion $10^{-5} \: m^2/s$;
+    \item grid $100x10$ cells;
+    \item throat diameters $t_d$ lognormally distributed
+    \[ t_d(x; s, loc, scale) = \frac{1}{(x-loc) s \sqrt{2 \pi}} \exp\left( -\frac{(\ln(x-loc) - ln(scale))^2}{2 s^2} \right), \quad x > 0 \]
+    where $s=0.5$ is the standard deviation $\sigma$ of the underlying normal distribution, $loc$ is a parameter that shifts the distribution along the x-axis and changes the argument of the logarithm and $scale$ corresponds to the exponential of the mean of the underlying distribution that is $ln(scale)=\mu$.  
+\end{itemize}
+The heat map of the concentration across the pore-throat network is reported in figure \ref{fig:Concentration100x10}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/fromOpenPNM/concentrationHeatMap100x10.png}
+    \caption{Concentration heat map for a 2D pore-throat network with domain size of 100x10 cells}
+    \label{fig:Concentration100x10}
+\end{figure}
+and the numerical outputs are:
+\begin{itemize}
+    \item conductance from OpenPNM:
+    \item conductance geometric mean:
 \end{itemize}
 
 \FloatBarrier  % Prevents figures from floating past this point
