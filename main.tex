@@ -737,7 +737,42 @@ Same for 10 pores and 9 fractures network.
 
 \FloatBarrier  % Prevents figures from floating past this point
 \subsubsection{Test 1D and multiple fractures with heterogeneous diffusive conductances}
-
+In pore-throat systems where throats are in series, the conductance of the system $K_d$ is equal to the harmonic mean of the throats' conductance $(D_mol*A_i/L_i)$.
+Given the pore-throat network where throats have different values of diffusive coductance such as the one in figure \ref{fig:Network1Dhet},
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/fromOpenPNM/hetNetwork1D.png}
+    \caption{1D network of fractures with heterogeneous values of conductance. The width of the lines is proportional to the diffusive conductance of the throats.}
+    \label{fig:Network1Dhet}
+\end{figure}
+the conductance of the system computed as
+\begin{itemize}
+    \item $K_d = numberOfThroats * \dfrac{Q_d}{\Delta C}$
+\end{itemize}
+is the same as the harmonic mean of the collection of conductance values of each throat
+\begin{itemize}
+    \item $K_d = \frac{n}{\sum_{i=1}^n\frac{1}{K_{di}}}$.
+\end{itemize}
+The result is shown in figure \ref{fig:Network1Dconc}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/fromOpenPNM/hetNetwork1DConc.png}
+    \caption{Concentration distribution across a 1D network of fractures with heterogeneous values of conductance}
+    \label{fig:Network1Dconc}
+\end{figure}
+The numerical inputs for this test are:
+\begin{itemize}
+    \item pore spacing = $10^{-3} m$;
+    \item pore diameter = $spacing/10$;
+    \item molecular diffusion = $10^{-5} m^2/$;
+    \item diffusive conductance = 2.26069e-12, 6.92748e-13, 2.77110e-13, 2.81421e-13, 3.44455e-13,
+       7.27295e-13, 7.37918e-14, 4.92028e-13, 3.65745e-13;
+\end{itemize}
+The output are:
+\begin{itemize}
+    \item flow rate $Q_d = 1.58*10^{-13}$;
+    \item conductance $K_d = 2.844*10^{-13}$.
+\end{itemize}
 
 \FloatBarrier  % Prevents figures from floating past this point
 \subsubsection{Test 2D}
