@@ -686,8 +686,8 @@ Input data:
 \end{itemize}
 
 \FloatBarrier  % Prevents figures from floating past this point
-\subsection{Effective diffusion}
-\subsubsection{Test 1D and single fracture}
+\subsection{Effective diffusion: validation of \texttt{OpenPNM}}
+\subsubsection{Test 1D: single fracture}
 To  verify that the \texttt{FickianDiffusion} method provided by the OpenPNM works as expected, we compare the analytical solution of the Fick's law of diffusion with result provided by the \texttt{FickianDiffusion} for the elementary case where the fracture network counts with only one 1D fracture, i.e. 2 nodes and 1 throat (Fig. \ref{fig:OneFracture}).
 \begin{figure}[h]
     \centering
@@ -732,11 +732,7 @@ if
 \end{itemize}
 
 \FloatBarrier  % Prevents figures from floating past this point
-\subsubsection{Test 1D and multiple fractures with uniform diffusive conductances}
-Same for 10 pores and 9 fractures network.
-
-\FloatBarrier  % Prevents figures from floating past this point
-\subsubsection{Test 1D and multiple fractures with heterogeneous diffusive conductances}
+\subsubsection{Test 1D: fractures with heterogeneous diffusive conductances in series}
 In pore-throat systems where throats are in series, the conductance of the system $K_d$ is equal to the harmonic mean of the throats' conductance $(D_mol*A_i/L_i)$.
 Given the pore-throat network where throats have different values of diffusive coductance such as the one in figure \ref{fig:Network1Dhet},
 \begin{figure}[h]
@@ -751,7 +747,7 @@ the conductance of the system computed as
 \end{itemize}
 is the same as the harmonic mean of the collection of conductance values of each throat
 \begin{itemize}
-    \item $K_d = \frac{n}{\sum_{i=1}^n\frac{1}{K_{di}}}$.
+    \item \[ K_d = \frac{n}{\sum_{i=1}^n\frac{1}{K_{di}}} \].
 \end{itemize}
 The result is shown in figure \ref{fig:Network1Dconc}.
 \begin{figure}[h]
@@ -775,7 +771,28 @@ The output are:
 \end{itemize}
 
 \FloatBarrier  % Prevents figures from floating past this point
-\subsubsection{Test 2D}
+\subsubsection{Test 1D: fractures with heterogeneous diffusive conductances in parallel}
+
+\FloatBarrier  % Prevents figures from floating past this point
+\subsubsection{Test 2D: fractures with heterogeneous diffusive conductances in series and parallel}
+When the throats of a fractured network are connected both in series and in parallel, the conductance of the system $K_d$ corresponds to the geometric mean \ref{eq:GeomMean} of the collection of conductance values of each throat.
+\begin{equation}
+    \left( \prod_{i=1}^n K_{di} \right)^{1/n} = exp \left(\frac{1}{n} \sum_{i=1}^n ln(K_{di}) \right) = \sqrt[n]{K_{d1}K_{d2}..K_{dn}}
+    \label{eq:GeomMean}
+\end{equation}
+This is confirmed by the numerical setup in figure \ref{fig:Network2D} with the following inputs:
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/fromOpenPNM/rectangular2Dpn100x10.png}
+    \caption{2D pore-throat squared-cell network with domain size of 100x10 cells}
+    \label{fig:Network2D}
+\end{figure}
+\begin{itemize}
+    \item spacing $10^{-3} m$;
+\end{itemize}
+
+\FloatBarrier  % Prevents figures from floating past this point
+\subsubsection{Test 2D: effective diffusion, porosity and tortuosity}
 The effective diffusion characteristic of a network of fractures is
 \begin{equation}
     D_{eff}=\frac{Q_D*L}{A*(C_1-C_0)}
