@@ -743,11 +743,15 @@ Given the pore-throat network where throats have different values of diffusive c
 \end{figure}
 the conductance of the system computed as
 \begin{itemize}
-    \item $K_d = numberOfThroats * \dfrac{Q_d}{\Delta C}$
+    \item $K_d = xPores * \dfrac{Q_d}{\Delta C}$
 \end{itemize}
 is the same as the harmonic mean of the collection of conductance values of each throat
 \begin{itemize}
-    \item \[ K_d = \frac{n}{\sum_{i=1}^n\frac{1}{K_{di}}} \].
+    \item
+    \begin{equation}
+        K_d = \frac{n}{\sum_{i=1}^n\frac{1}{K_{di}}}
+        \label{fig:HarmonicMean}
+    \end{equation}
 \end{itemize}
 The result is shown in figure \ref{fig:Network1Dconc}.
 \begin{figure}[h]
@@ -761,6 +765,8 @@ The numerical inputs for this test are:
     \item pore spacing = $10^{-3} \: m$;
     \item pore diameter = $spacing/10$;
     \item molecular diffusion = $10^{-5} \: m^2/$;
+    \item inlet concentration: $C_{in}=10$;
+    \item outlet concentration: $C_{out}=5$;
     \item diffusive conductance = 2.26069e-12, 6.92748e-13, 2.77110e-13, 2.81421e-13, 3.44455e-13,
        7.27295e-13, 7.37918e-14, 4.92028e-13, 3.65745e-13;
 \end{itemize}
@@ -772,6 +778,36 @@ The output are:
 
 \FloatBarrier  % Prevents figures from floating past this point
 \subsubsection{Test 1D: fractures with heterogeneous diffusive conductances in parallel}
+The conductance $C$ of a pore-throat network where each series of throats (pipe) allows the flow of fluid through parallel pipes is equal to the sum of the conductance $C_i$ of each pipe \ref{eq:ParallelCond}.
+\begin{equation}
+    C = \sum_{i=1}^{n} C_i
+    \label{eq:ParallelCond}
+\end{equation}
+where $n$ is the number of pipes.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/fromOpenPNM/parallel2Dpn10x10.png}
+    \caption{2D pore-throat squared-cell network with 10 pipes of 10 throats each}
+    \label{fig:NetworkParallel}
+\end{figure}
+The conductance of each pipe $C_i$ is equal to the harmonic mean (Eq. \ref{fig:HarmonicMean}) of the conducatances of the throats that the pipe is made of.
+For a system of 100 pipes, each made of 100 throats with lognormally distributed values of conductance (Figure \ref{fig:Parallel100x100} left), the final concentration spatial pattern looks like the one in figure \ref{fig:Parallel100x100} right.
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.45\textwidth]{images/fromOpenPNM/parallelGrid100x100.png}
+    \hspace{0.05\textwidth} % Space between the images
+    \includegraphics[width=0.45\textwidth]{images/fromOpenPNM/parallelConc100x100.png}
+    \caption{Two charts side by side}
+    \label{fig:Parallel100x100}
+\end{figure}
+Input:
+\begin{itemize}
+    \item wefwef
+\end{itemize}
+Output:
+\begin{itemize}
+    \item wefwef
+\end{itemize}
 
 \FloatBarrier  % Prevents figures from floating past this point
 \subsubsection{Test 2D: fractures with heterogeneous diffusive conductances in series and parallel}
@@ -792,9 +828,11 @@ This is confirmed by the numerical setup in figure \ref{fig:Network2D} which is 
     \item pore diameter $spacing/10$
     \item molecular diffusion $10^{-5} \: m^2/s$;
     \item grid $100x10$ cells;
+    \item inlet concentration: $C_{in}=10$;
+    \item outlet concentration: $C_{out}=5$;
     \item throat diameters $t_d$ lognormally distributed
     \[ t_d(x; s, loc, scale) = \frac{1}{(x-loc) s \sqrt{2 \pi}} \exp\left( -\frac{(\ln(x-loc) - ln(scale))^2}{2 s^2} \right), \quad x > 0 \]
-    where $s=0.5$ is the standard deviation $\sigma$ of the underlying normal distribution, $loc$ is a parameter that shifts the distribution along the x-axis and changes the argument of the logarithm and $scale$ corresponds to the exponential of the mean of the underlying distribution that is $ln(scale)=\mu$.  
+    where $s=0.5$ is the standard deviation $\sigma$ of the underlying normal distribution, $loc$ is a parameter that shifts the distribution along the x-axis and $scale$ corresponds to the exponential of the mean of the underlying distribution, that is $ln(scale)=\mu$.  
 \end{itemize}
 The heat map of the concentration across the pore-throat network is reported in figure \ref{fig:Concentration100x10}
 \begin{figure}[h]
@@ -805,8 +843,9 @@ The heat map of the concentration across the pore-throat network is reported in 
 \end{figure}
 and the numerical outputs are:
 \begin{itemize}
-    \item conductance from OpenPNM:
-    \item conductance geometric mean:
+    \item flow rate $Q_d = 9.79253 * 10^{-12} \: m^3/s$;
+    \item conductance from OpenPNM: $K_d = xPores *Q_d/\Delta C = 1.958506 * 10^{-11}$;
+    \item conductance geometric mean: $K_d = 1.955675*10^{-11}$.
 \end{itemize}
 
 \FloatBarrier  % Prevents figures from floating past this point
