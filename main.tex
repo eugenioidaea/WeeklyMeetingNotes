@@ -732,8 +732,8 @@ if
 \end{itemize}
 
 \FloatBarrier  % Prevents figures from floating past this point
-\subsubsection{Test 1D: fractures with heterogeneous diffusive conductances in series}
-In pore-throat systems where throats are in series, the conductance of the system $K_d$ is equal to the harmonic mean of the throats' conductance $(D_mol*A_i/L_i)$.
+\subsubsection{Test 1D: throats in series}
+In pore-throat systems where throats are in series, the conductance of the system $K_d$ is equal to the harmonic mean of the throats' conductance.
 Given the pore-throat network where throats have different values of diffusive coductance such as the one in figure \ref{fig:Network1Dhet},
 \begin{figure}[h]
     \centering
@@ -742,23 +742,22 @@ Given the pore-throat network where throats have different values of diffusive c
     \label{fig:Network1Dhet}
 \end{figure}
 the conductance of the system computed as
-\begin{itemize}
-    \item $K_d = xPores * \dfrac{Q_d}{\Delta C}$
-\end{itemize}
+\begin{equation}
+    K_d = \#Pores * \dfrac{Q_d}{\Delta C}
+\end{equation}
 is the same as the harmonic mean of the collection of conductance values of each throat
-\begin{itemize}
-    \item
-    \begin{equation}
-        K_d = \frac{n}{\sum_{i=1}^n\frac{1}{K_{di}}}
-        \label{fig:HarmonicMean}
-    \end{equation}
-\end{itemize}
-The result is shown in figure \ref{fig:Network1Dconc}.
-\begin{figure}[h]
+\begin{equation}
+    K_d = \frac{n}{\sum_{i=1}^n\frac{1}{K_{di}}}.
+    \label{fig:HarmonicMean}
+\end{equation}
+The result for a system of 100 throats in series is shown in figure \ref{fig:Series100}.
+\begin{figure}[h!]
     \centering
-    \includegraphics[width=0.5\textwidth]{images/fromOpenPNM/hetNetwork1DConc.png}
-    \caption{Concentration distribution across a 1D network of fractures with heterogeneous values of conductance}
-    \label{fig:Network1Dconc}
+    \includegraphics[width=0.45\textwidth]{images/fromOpenPNM/seriesThroats100.png}
+    \hspace{0.05\textwidth} % Space between the images
+    \includegraphics[width=0.45\textwidth]{images/fromOpenPNM/seriesConc100.png}
+    \caption{Left: 100 throats with different conductance values. Right: conentration after diffusion}
+    \label{fig:Series100}
 \end{figure}
 The numerical inputs for this test are:
 \begin{itemize}
@@ -767,17 +766,16 @@ The numerical inputs for this test are:
     \item molecular diffusion = $10^{-5} \: m^2/$;
     \item inlet concentration: $C_{in}=10$;
     \item outlet concentration: $C_{out}=5$;
-    \item diffusive conductance = 2.26069e-12, 6.92748e-13, 2.77110e-13, 2.81421e-13, 3.44455e-13,
-       7.27295e-13, 7.37918e-14, 4.92028e-13, 3.65745e-13;
 \end{itemize}
 The output are:
 \begin{itemize}
-    \item flow rate $Q_d = 1.58*10^{-13} \: m^3/s$;
-    \item conductance $K_d = 2.844*10^{-13} \: m^3/s$.
+    \item flow rate $Q_d = 5.6734*10^{-13} \: m^3/s$;
+    \item conductance from OpenPNM: $K_d = xPores *Q_d/\Delta C = 1.3446 * 10^{-11}$;
+    \item sum of the pipe conductance values: $K_d = 1.1233*10^{-11}$.
 \end{itemize}
 
 \FloatBarrier  % Prevents figures from floating past this point
-\subsubsection{Test 1D: fractures with heterogeneous diffusive conductances in parallel}
+\subsubsection{Test 1D: fractures in parallel}
 The conductance $C$ of a pore-throat network where each series of throats (pipe) allows the flow of fluid through parallel pipes is equal to the sum of the conductance $C_i$ of each pipe \ref{eq:ParallelCond}.
 \begin{equation}
     C = \sum_{i=1}^{n} C_i
@@ -802,15 +800,23 @@ For a system of 100 pipes, each made of 100 throats with lognormally distributed
 \end{figure}
 Numerical input:
 \begin{itemize}
-    \item wefwef
+    \item spacing $10^{-3} \: m$;
+    \item pore diameter $spacing/10$
+    \item molecular diffusion $10^{-5} \: m^2/s$;
+    \item grid $100x100$ cells;
+    \item inlet concentration: $C_{in}=10$;
+    \item outlet concentration: $C_{out}=5$;
+    \item throat diameters $t_d$ lognormally distributed.
 \end{itemize}
 Numerical output:
 \begin{itemize}
-    \item wefwef
+    \item flow rate $Q_d = 6.2143 * 10^{-11} \: m^3/s$;
+    \item conductance from OpenPNM: $K_d = xPores *Q_d/\Delta C = 1.2429 * 10^{-9}$;
+    \item sum of the pipe conductance values: $K_d = 1.2244*10^{-9}$.
 \end{itemize}
 
 \FloatBarrier  % Prevents figures from floating past this point
-\subsubsection{Test 2D: fractures with heterogeneous diffusive conductances in series and parallel}
+\subsubsection{Test 2D: throats in series and parallel}
 When the throats of a fractured network are connected both in series and in parallel, the conductance of the system $K_d$ corresponds to the geometric mean (Eq. \ref{eq:GeomMean}) of the collection of conductance values of each throat.
 \begin{equation}
     \left( \prod_{i=1}^n K_{di} \right)^{1/n} = exp \left(\frac{1}{n} \sum_{i=1}^n ln(K_{di}) \right) = \sqrt[n]{K_{d1}K_{d2}..K_{dn}}
