@@ -126,7 +126,7 @@ For the case where the particles which impact the lower and upper boundaries are
 \FloatBarrier  % Prevents figures from floating past this point
 \subsection{Final positions}
 The final position of $10^4$ particles after 20 steps is shown in Figure \ref{fig:finalPos}.
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.5\textwidth]{images/finalPositions.png}
     \caption{Final position for 1e4 particles after 20 steps in a domain characterised by absorbing boundaries}
@@ -425,7 +425,7 @@ For each particle crossing from the fracture to the porous matrix, a random numb
     \label{fig:MatrixDiffusion}
 \end{figure}
 The table \ref{fig:MatrixDiffusionVerification} highlights the difference between the diffusion coefficient of the fracture and the one of the porous matrix: once a particle escapes from the fracture, its jumps are 100 times smaller compared to those that still live in the fracture. It follows that, the more impacts the more particles cross the border and the higher the concentration. Interesting enough, if the probability of matrix-to-fracture crossing is zero, after $10^4$ time steps no particles is left in the fracture, as shown in Figure \ref{fig:finalPosMatrixDiff}.
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.5\textwidth]{images/finalPositionsMatrixDiffusion.png}
     \caption{Final position of $10^4$ particles after $10^4$ time steps}
@@ -575,7 +575,7 @@ The aim of the following numerical experiments is to compare the degradation of 
     \label{fig:effVsRadioactivedecays}
 \end{figure}
 Overall, the rates from figure \ref{fig:reactionRatesMatrixDecay} (a) and (b) compare well with those from figure \ref{fig:effVsRadioactivedecays} (a), which represent the derivatives of the cubic splines which fit the points in figure \ref{fig:reactionRatesMatrixDecay} (b). Last attempt for getting a smoother derivative is by binning the values from figure \ref{fig:reactionRatesMatrixDecay} (b) into log-spaced classes and compute the derivative of their average values.
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.5\textwidth]{images/effVsDecayRatesLogLog.png}
     \caption{Effective reaction rate vs radioactive decays in the porous matrix. The radioactive decay in the porous matrix ranges between 0.001 and 0.1.}
@@ -647,7 +647,7 @@ Conductance $g_h$:
 \begin{equation}
     Q=g_h (P_{in}-P_{out})
 \end{equation}
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.5\textwidth]{images/poiseuilleFlow.png}
     \caption{Hagen-Poiseuille flow verification using OpenPNM}
@@ -675,7 +675,7 @@ Input data:
     \item pressure left: $2$
     \item pressure right: $1$
 \end{itemize}
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.5\textwidth]{images/3DcubicPoreNet.png}
     \caption{Pressure in a cubic porous network}
@@ -689,7 +689,7 @@ Input data:
 \subsection{Effective diffusion: validation of \texttt{OpenPNM}}
 \subsubsection{Test 1D: single fracture}
 To  verify that the \texttt{FickianDiffusion} method provided by the OpenPNM works as expected, we compare the analytical solution of the Fick's law of diffusion with result provided by the \texttt{FickianDiffusion} for the elementary case where the fracture network counts with only one 1D fracture, i.e. 2 nodes and 1 throat (Fig. \ref{fig:OneFracture}).
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.5\textwidth]{images/fromOpenPNM/oneFracture.png}
     \caption{1D fracture}
@@ -714,7 +714,7 @@ The expected value of the diffusive flux is
     Q_D = 10^{-3} \frac{10-5}{10^{-3}} 7.85*10^{-9} = 3.927*10^{-8} m^3/s
 \end{equation}
 that matches the value computed by \texttt{FickianDiffusion} method.
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.5\textwidth]{images/fromOpenPNM/oneFractureSolution.png}
     \caption{Concentration colour map for Fickian diffusion through a 1D fracture}
@@ -735,7 +735,7 @@ if
 \subsubsection{Test 1D: throats in series}
 In pore-throat systems where throats are in series, the conductance of the system $K_d$ is equal to the harmonic mean of the throats' conductance.
 Given the pore-throat network where throats have different values of diffusive coductance such as the one in figure \ref{fig:Network1Dhet},
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.5\textwidth]{images/fromOpenPNM/hetNetwork1D.png}
     \caption{1D network of fractures with heterogeneous values of conductance. The width of the lines is proportional to the diffusive conductance of the throats.}
@@ -745,13 +745,13 @@ the conductance of the system computed as
 \begin{equation}
     K_d = \#Pores * \dfrac{Q_d}{\Delta C}
 \end{equation}
-is the same as the harmonic mean of the collection of conductance values of each throat
+is equivalent to the harmonic mean of the collection of conductance values of each throat
 \begin{equation}
     K_d = \frac{n}{\sum_{i=1}^n\frac{1}{K_{di}}}.
     \label{fig:HarmonicMean}
 \end{equation}
 The result for a system of 100 throats in series is shown in figure \ref{fig:Series100}.
-\begin{figure}[h!]
+\begin{figure}[htbp!]
     \centering
     \includegraphics[width=0.45\textwidth]{images/fromOpenPNM/seriesThroats100.png}
     \hspace{0.05\textwidth} % Space between the images
@@ -776,21 +776,21 @@ The output are:
 
 \FloatBarrier  % Prevents figures from floating past this point
 \subsubsection{Test 1D: fractures in parallel}
-The conductance $C$ of a pore-throat network where each series of throats (pipe) allows the flow of fluid through parallel pipes is equal to the sum of the conductance $C_i$ of each pipe \ref{eq:ParallelCond}.
+The conductance $C$ of a pore-throat network where each series of throats (pipe) allows the flow of fluid through parallel pipes is equal to the sum of the conductance $C_i$ of each pipe (Eq. \ref{eq:ParallelCond})
 \begin{equation}
     C = \sum_{i=1}^{n} C_i
     \label{eq:ParallelCond}
 \end{equation}
 where $n$ is the number of pipes.
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.5\textwidth]{images/fromOpenPNM/parallel2Dpn10x10.png}
     \caption{2D pore-throat squared-cell network with 10 pipes of 10 throats each}
     \label{fig:NetworkParallel}
 \end{figure}
-The conductance of each pipe $C_i$ is equal to the harmonic mean (Eq. \ref{fig:HarmonicMean}) of the conducatances of the throats that the pipe is made of.
+The conductance of each pipe $C_i$ is equal to the harmonic mean (Eq. \ref{fig:HarmonicMean}) of the conductances of the throats that form the pipe.
 For a system of 100 pipes, each made of 100 throats with lognormally distributed values of conductance (Figure \ref{fig:Parallel100x100} left), the final concentration spatial pattern looks like the one in figure \ref{fig:Parallel100x100} right.
-\begin{figure}[h!]
+\begin{figure}[htbp!]
     \centering
     \includegraphics[width=0.45\textwidth]{images/fromOpenPNM/parallelGrid100x100.png}
     \hspace{0.05\textwidth} % Space between the images
@@ -823,7 +823,7 @@ When the throats of a fractured network are connected both in series and in para
     \label{eq:GeomMean}
 \end{equation}
 This is confirmed by the numerical setup in figure \ref{fig:Network2D} which is characterised by the following inputs:
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.5\textwidth]{images/fromOpenPNM/rectangular2Dpn100x10.png}
     \caption{2D pore-throat squared-cell network with domain size of 100x10 cells}
@@ -841,7 +841,7 @@ This is confirmed by the numerical setup in figure \ref{fig:Network2D} which is 
     where $s=0.5$ is the standard deviation $\sigma$ of the underlying normal distribution, $loc$ is a parameter that shifts the distribution along the x-axis and $scale$ corresponds to the exponential of the mean of the underlying distribution, that is $ln(scale)=\mu$.  
 \end{itemize}
 The heat map of the concentration across the pore-throat network is reported in figure \ref{fig:Concentration100x10}
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.5\textwidth]{images/fromOpenPNM/concentrationHeatMap100x10.png}
     \caption{Concentration heat map for a 2D pore-throat network with domain size of 100x10 cells}
@@ -864,14 +864,14 @@ The effective diffusion characteristic of a network of fractures is
 where $Q_D$ is the diffusive flux, $L$ is the overall length of the domain, $A$ is the cross-section area of the pore network and $C_i$ is the fixed boundary concentration value.
 Firstly, a network of fractures characterised by a cubic building block is created. Pores are spherical and throats are cylindrical. The sizes of the elementary fracture, i.e. lengths and diameters, are the same as for the 1D case. The diffusive conductance values of the throats are sampled from a lognormal distribution with standard deviation $s=0.5$, the location parameter $loc=0$ and the scale factor $scale=D_{mol}=10^{-3}$. Figure \ref{fig:Network} represents the cubic pore-throat network and the line width is proportional to the diffusive conductance of the throats.
 \FloatBarrier  % Prevents figures from floating past this point
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.5\textwidth]{images/fromOpenPNM/rectangular2Dpn.png}
     \caption{2D network of fractures. The width of the lines is proportional to the diffusive conductance of the throats}
     \label{fig:Network}
 \end{figure}
 \FloatBarrier  % Prevents figures from floating past this point
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.5\textwidth]{images/fromOpenPNM/effDiffLognormalDist.png}
     \caption{Lognormal distribution of diffusive conductances}
@@ -879,7 +879,7 @@ Firstly, a network of fractures characterised by a cubic building block is creat
 \end{figure}
 Secondly, the flow rate $Q_D$ is computed using the \texttt{FickianDiffusion} from OpenPNM and the spatial distribution of the concentration is reported in figure \ref{fig:ConcInFractures}.
 \FloatBarrier  % Prevents figures from floating past this point
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.5\textwidth]{images/fromOpenPNM/concentrationHeatMap.png}
     \caption{Concentration in network of fractures}
