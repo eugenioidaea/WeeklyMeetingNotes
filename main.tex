@@ -733,22 +733,22 @@ if
 
 \FloatBarrier  % Prevents figures from floating past this point
 \subsubsection{Test 1D: throats in series}
-In pore-throat systems where throats are in series, the conductance of the system $K_d$ is equal to the harmonic mean of the throats' conductance.
-Given the pore-throat network where throats have different values of diffusive coductance such as the one in figure \ref{fig:Network1Dhet},
+In pore-throat systems where throats are in series, the conductance of the system $K_d$ is equal to the inverse of the average of the inverse of the conductance values (Eq. \ref{eq:HarmonicMean}). Given the pore-throat network where throats have different values of diffusive coductance such as the one in figure \ref{fig:Network1Dhet},
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.5\textwidth]{images/fromOpenPNM/hetNetwork1D.png}
     \caption{1D network of fractures with heterogeneous values of conductance. The width of the lines is proportional to the diffusive conductance of the throats.}
     \label{fig:Network1Dhet}
 \end{figure}
-the conductance of the system computed as
+the conductance of the system computed using equation \ref{eq:OpenPNMcond} with $Q_d$ value from \texttt{OpenPNM}
 \begin{equation}
-    K_d = \#Pores * \dfrac{Q_d}{\Delta C}
+    K_d = \dfrac{Q_d}{\Delta C}
+    \label{eq:OpenPNMcond}
 \end{equation}
-is equivalent to the harmonic mean of the collection of conductance values of each throat
+is equivalent to the inverse of the average of the inverse of the conductance values of each throat
 \begin{equation}
-    K_d = \frac{n}{\sum_{i=1}^n\frac{1}{K_{di}}}.
-    \label{fig:HarmonicMean}
+    K_d = \frac{1}{\sum_{i=1}^n\frac{1}{K_{di}}}.
+    \label{eq:HarmonicMean}
 \end{equation}
 The result for a system of 100 throats in series is shown in figure \ref{fig:Series100}.
 \begin{figure}[htbp!]
@@ -769,9 +769,9 @@ The numerical inputs for this test are:
 \end{itemize}
 The output are:
 \begin{itemize}
-    \item flow rate $Q_d = 5.6734*10^{-13} \: m^3/s$;
-    \item conductance from OpenPNM: $K_d = xPores *Q_d/\Delta C = 1.3446 * 10^{-11}$;
-    \item sum of the pipe conductance values: $K_d = 1.1233*10^{-11}$.
+    \item flow rate $Q_d = 7.5366*10^{-13} \: m^3/s$;
+    \item conductance from OpenPNM: $K_d = Q_d/\Delta C = 1.5073 * 10^{-13}$;
+    \item sum of the pipe conductance values: $K_d = 1.5073 * 10^{-13}$.
 \end{itemize}
 
 \FloatBarrier  % Prevents figures from floating past this point
@@ -788,8 +788,8 @@ where $n$ is the number of pipes.
     \caption{2D pore-throat squared-cell network with 10 pipes of 10 throats each}
     \label{fig:NetworkParallel}
 \end{figure}
-The conductance of each pipe $C_i$ is equal to the harmonic mean (Eq. \ref{fig:HarmonicMean}) of the conductances of the throats that form the pipe.
-For a system of 100 pipes, each made of 100 throats with lognormally distributed values of conductance (Figure \ref{fig:Parallel100x100} left), the final concentration spatial pattern looks like the one in figure \ref{fig:Parallel100x100} right.
+The conductance of each pipe $C_i$ can be computed using equation \ref{eq:HarmonicMean}.
+For a system of 100 pipes, each made of 100 throats with lognormally distributed values of conductance (Figure \ref{fig:Parallel100x100} left), the final concentration spatial pattern looks like the one on the right panel of figure \ref{fig:Parallel100x100}.
 \begin{figure}[htbp!]
     \centering
     \includegraphics[width=0.45\textwidth]{images/fromOpenPNM/parallelGrid100x100.png}
@@ -810,9 +810,9 @@ Numerical input:
 \end{itemize}
 Numerical output:
 \begin{itemize}
-    \item flow rate $Q_d = 6.2143 * 10^{-11} \: m^3/s$;
-    \item conductance from OpenPNM: $K_d = xPores *Q_d/\Delta C = 1.2429 * 10^{-9}$;
-    \item sum of the pipe conductance values: $K_d = 1.2244*10^{-9}$.
+    \item flow rate $Q_d = 1.03759 * 10^{-10} \: m^3/s$;
+    \item conductance from OpenPNM: $K_d = xPores *Q_d/\Delta C = 2.147185 * 10^{-11}$;
+    \item sum of the pipe conductance values: $K_d = 2.147185 * 10^{-11}$.
 \end{itemize}
 
 \FloatBarrier  % Prevents figures from floating past this point
@@ -906,6 +906,30 @@ to evaluate the tortuosity of the fracture network. The porosity of our system, 
     \tau = 1.8*10^{-2}\frac{10^{-3}}{1.157} = 1.6*10^{-5}.
     \label{eq:Tortuosity}
 \end{equation}
+
+\FloatBarrier  % Prevents figures from floating past this point
+\subsection{Knudsen diffusion}
+Knudsen diffusion is a type of molecular transport that occurs when gas molecules move through narrow pores or channels, and their mean free path is significantly larger than the diameter of the pores. This transport mechanism is distinct from ordinary diffusion because gas molecules primarily collide with the walls of the pore rather than with each other.
+\begin{itemize}
+    \item Knuden number: \[ K_n = \frac{\lambda}{d} \]
+    \item mean free path: \[ \lambda = \frac{k_B T}{\sqrt{2} \pi d^2 P} \]
+    \item characteristic length scale: $L$
+    \item Knudsen diffusion coefficient: \[ D_k = \frac{d}{3} \sqrt{\frac{8 R T}{\pi M_A}} \]
+\end{itemize}
+
+\subsection{Archie's law}
+The cementation factor m accounts for the deviation from the idealized case where pore spaces are perfectly connected. It's an empirical constant that varies based on rock type and is crucial for accurate interpretations of resistivity in reservoirs.
+\[
+R_t = a \cdot \left( \frac{\phi}{\phi_0} \right)^m \cdot R_w
+\]
+\begin{itemize}
+  \item \( R_t \) is the true resistivity of the rock,
+  \item \( \phi \) is the porosity of the rock,
+  \item \( \phi_0 \) is a reference porosity (often 1 for fully saturated rocks),
+  \item \( R_w \) is the resistivity of the pore water,
+  \item \( a \) is a constant related to rock structure (typically 1),
+  \item \( m \) is the cementation factor.
+\end{itemize}
 
 \FloatBarrier  % Prevents figures from floating past this point
 \bibliographystyle{plain}  % The style of your bibliography (e.g., plain, ieee, acm, etc.)
