@@ -707,6 +707,7 @@ Geometric data and boundary conditions are:
 The diffusive flux is defined as:
 \begin{equation}
     Q_D = D_{mol} \frac{C_{in}-C_{out}}{L} A = k_D (C_{in}-C_{out})
+    \label{eq:DiffCond}
 \end{equation}
 where $A [m^2]$ is the cross sectional area of the throat and $k_D [m^3/s]$ is the diffusive conductance.
 The expected value of the diffusive flux is
@@ -836,9 +837,7 @@ This is confirmed by the numerical setup in figure \ref{fig:Network2D} which is 
     \item grid $10x10$ cells;
     \item inlet concentration: $C_{in}=10$;
     \item outlet concentration: $C_{out}=5$;
-    \item throat diameters $t_d$ lognormally distributed
-    \[ t_d(x; s, loc, scale) = \frac{1}{(x-loc) s \sqrt{2 \pi}} \exp\left( -\frac{(\ln(x-loc) - ln(scale))^2}{2 s^2} \right), \quad x > 0 \]
-    where $s=0.5$ is the standard deviation $\sigma$ of the underlying normal distribution, $loc$ is a parameter that shifts the distribution along the x-axis and $scale$ corresponds to the exponential of the mean of the underlying distribution, that is $ln(scale)=\mu$.  
+    \item throat diameters $t_d$ lognormally distributed (eq. \ref{eq:LogNormDist}).  
 \end{itemize}
 The heat map of the concentration across the pore-throat network is reported in figure \ref{fig:Concentration100x10}
 \begin{figure}[htbp]
@@ -906,6 +905,30 @@ to evaluate the tortuosity of the fracture network. The porosity of our system, 
     \tau = 1.8*10^{-2}\frac{10^{-3}}{1.157} = 1.6*10^{-5}.
     \label{eq:Tortuosity}
 \end{equation}
+
+\FloatBarrier  % Prevents figures from floating past this point
+\subsubsection{Test 3D: effective diffusion vs variance of conductance distribution}
+Having defined the effective diffusion as equation \ref{eq:EffDiff}, we assessed the effect of the distribution of conductance values (eq. \ref{eq:DiffCond}) on the effective diffusion. We especially addressed the impact of the conductance distribution variance on the effective diffusion. The values of conductance $t_d$ are lognormally distributed (eq. \ref{eq:LogNormDist})
+\begin{equation}
+    t_d(x; s, loc, scale) = \frac{1}{(x-loc) s \sqrt{2 \pi}} \exp\left( -\frac{(\ln(x-loc) - ln(scale))^2}{2 s^2} \right), \quad x > 0
+    \label{eq:LogNormDist}
+\end{equation}
+where $s=0.5$ is the standard deviation $\sigma$ of the underlying normal distribution, $loc$ is a parameter that shifts the distribution along the x-axis and $scale$ corresponds to the exponential of the mean of the underlying distribution, that is $ln(scale)=\mu$. Figure \ref{} illustrates the effective diffusion for different values of the underlying variance of the conductance distribution.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/fromOpenPNM/EffDiffVsKdVar.png}
+    \caption{Effective diffusion vs conductance distribution variance}
+    \label{fig:EffDiffVsKdVar}
+\end{figure}
+The setup for computing these values is illustrated in figure \ref{fig:EffDiffVsKdVar3Dsetup}.
+\begin{figure}[htbp!]
+    \centering
+    \includegraphics[width=0.45\textwidth]{images/fromOpenPNM/Grid3D10x5x5.png}
+    \hspace{0.05\textwidth}
+    \includegraphics[width=0.45\textwidth]{images/fromOpenPNM/ConcGrid3D10x5x5.png}
+    \caption{Grid and concentration for effective diffusion evaluation for different variance of the conductance}
+    \label{fig:EffDiffVsKdVar3Dsetup}
+\end{figure}
 
 \FloatBarrier  % Prevents figures from floating past this point
 \subsection{Knudsen diffusion}
