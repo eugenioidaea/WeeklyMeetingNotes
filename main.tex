@@ -578,7 +578,7 @@ Overall, the rates from figure \ref{fig:reactionRatesMatrixDecay} (a) and (b) co
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.5\textwidth]{images/effVsDecayRatesLogLog.png}
-    \caption{Effective reaction rate vs radioactive decays in the porous matrix. The radioactive decay in the porous matrix ranges between 0.001 and 0.1.}
+    \caption{Effective reaction rate vs radioactive decays in the porous matrix. The radioactive decay in the porous matrix ranges between 0.001 and 0.1. The results indicate a power law relation between the radioactive decay in the porous matrix and the corresponding values of effective decay rate. The effective decay rate can be approximated by $K_{eff} = exp(-3.87+0.51*log(K_{matrixDecay}))$.}
     \label{fig:KeffVsDmLog}
 \end{figure}
 
@@ -598,7 +598,7 @@ As the molecular diffusion of particles in the porous matrix decreases, the effe
         \includegraphics[width=\textwidth]{images/kEffVsDfDmRatioLogLog.png}
         \caption{Loglog scale}
     \end{subfigure}
-    \caption{Effective radioactive decay for different values of molecular diffusion in the porous matrix. The characteristic time for all the simulation is $\tau_d=(u_b-l_b)^2/D_f=4/0.01=400$ while $D_m$ ranges between 0.01 and 0.00001. The value of the decay rate in the fracture is 0.01 and does not change between realisations. Setup: $10^6$ particles and max $10^6$ time steps with dt=1, Df=0.01 and Dm=0.001.}
+    \caption{Effective radioactive decay for different values of molecular diffusion in the porous matrix. The characteristic time for all the simulation is $\tau_d=(u_b-l_b)^2/D_f=4/0.01=400$ while $D_m$ ranges between 0.01 and 0.00001. The value of the decay rate in the fracture is 0.01 and does not change between realisations. Setup: $10^6$ particles and max $10^6$ time steps with dt=1, Df=0.01 and Dm=0.001. The results indicate a power law relation between the ratio of matrix to fracture molecular diffusion and the corresponding values of effective decay rate. The effective decay rate can be approximated by $K_{eff} = exp(-5.32+0.38*log(D_m/D_f))$.}
     \label{fig:KeffVsDm}
 \end{figure}
 
@@ -817,7 +817,7 @@ Numerical output:
 
 \FloatBarrier  % Prevents figures from floating past this point
 \subsubsection{Test 2D: throats in series and parallel}
-When the throats of a fractured network are connected both in series and in parallel, the conductance of the system $K_d$ corresponds to the geometric mean (Eq. \ref{eq:GeomMean}) of the collection of conductance values of each throat.
+When the throats of a fractured network are connected both in series and in parallel, the conductance of small systems $K_d$ can be approximated by the geometric mean (Eq. \ref{eq:GeomMean}) of the collection of conductance values of each throat.
 \begin{equation}
     \left( \prod_{i=1}^n K_{di} \right)^{1/n} = exp \left(\frac{1}{n} \sum_{i=1}^n ln(K_{di}) \right) = \sqrt[n]{K_{d1}K_{d2}..K_{dn}}
     \label{eq:GeomMean}
@@ -825,15 +825,15 @@ When the throats of a fractured network are connected both in series and in para
 This is confirmed by the numerical setup in figure \ref{fig:Network2D} which is characterised by the following inputs:
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.5\textwidth]{images/fromOpenPNM/rectangular2Dpn100x10.png}
-    \caption{2D pore-throat squared-cell network with domain size of 100x10 cells}
+    \includegraphics[width=0.5\textwidth]{images/fromOpenPNM/rectangular2Dpn10x10.png}
+    \caption{2D pore-throat squared-cell network with domain size of 10x10 cells}
     \label{fig:Network2D}
 \end{figure}
 \begin{itemize}
     \item spacing $10^{-3} \: m$;
     \item pore diameter $spacing/10$
     \item molecular diffusion $10^{-5} \: m^2/s$;
-    \item grid $100x10$ cells;
+    \item grid $10x10$ cells;
     \item inlet concentration: $C_{in}=10$;
     \item outlet concentration: $C_{out}=5$;
     \item throat diameters $t_d$ lognormally distributed
@@ -843,15 +843,15 @@ This is confirmed by the numerical setup in figure \ref{fig:Network2D} which is 
 The heat map of the concentration across the pore-throat network is reported in figure \ref{fig:Concentration100x10}
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.5\textwidth]{images/fromOpenPNM/concentrationHeatMap100x10.png}
+    \includegraphics[width=0.5\textwidth]{images/fromOpenPNM/concentrationHeatMap10x10.png}
     \caption{Concentration heat map for a 2D pore-throat network with domain size of 100x10 cells}
     \label{fig:Concentration100x10}
 \end{figure}
 and the numerical outputs are:
 \begin{itemize}
-    \item flow rate $Q_d = 9.79253 * 10^{-12} \: m^3/s$;
-    \item conductance from OpenPNM: $K_d = xPores *Q_d/\Delta C = 1.958506 * 10^{-11}$;
-    \item conductance geometric mean: $K_d = 1.955675*10^{-11}$.
+    \item flow rate $Q_d = 1.07646 * 10^{-10} \: m^3/s$;
+    \item conductance from OpenPNM: $K_d = xPores *Q_d/\Delta C = 2.1529 * 10^{-11}$;
+    \item conductance geometric mean: $K_d = 1.9025*10^{-11}$.
 \end{itemize}
 
 \FloatBarrier  % Prevents figures from floating past this point
