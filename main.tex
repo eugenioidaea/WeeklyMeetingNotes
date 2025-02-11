@@ -955,6 +955,36 @@ R_t = a \cdot \left( \frac{\phi}{\phi_0} \right)^m \cdot R_w
 \end{itemize}
 
 \FloatBarrier  % Prevents figures from floating past this point
+\subsection{Breakthrough curve from 2D cubic network}
+Pore throat network and lognormal distribution of the conductance values (figure \ref{fig:2DstrctureCond}).
+\begin{figure}[htbp!]
+    \centering
+    \includegraphics[width=0.45\textwidth]{images/fromOpenPNM/2DnetworkStructure10x10.png}
+    \hspace{0.05\textwidth}
+    \includegraphics[width=0.45\textwidth]{images/fromOpenPNM/LognormalDistCond.png}
+    \caption{Pore throat network and lognormal distribution of the conductance values}
+    \label{fig:2DstrctureCond}
+\end{figure}
+Spatial pore concentration at time=3 and breakthrough curve recorded at the outlet (figure \ref{fig:LinBTC}).
+\begin{figure}[htbp!]
+    \centering
+    \includegraphics[width=0.45\textwidth]{images/fromOpenPNM/poreConcTime3.png}
+    \hspace{0.05\textwidth}
+    \includegraphics[width=0.45\textwidth]{images/fromOpenPNM/linearBTC.png}
+    \caption{Spatial pore concentration at time=3 and breakthrough curve recorded at the outlet}
+    \label{fig:LinBTC}
+\end{figure}
+Breakthrough curve tail in loglog scale and linear regression to fit the tail (figure \ref{fig:LinInterpLogTail}).
+\begin{figure}[htbp!]
+    \centering
+    \includegraphics[width=0.45\textwidth]{images/fromOpenPNM/loglogBTC.png}
+    \hspace{0.05\textwidth}
+    \includegraphics[width=0.45\textwidth]{images/fromOpenPNM/interpSemiLogTail.png}
+    \caption{Breakthrough curve tail in loglog scale and linear regression to fit the tail}
+    \label{fig:LinInterpLogTail}
+\end{figure}
+
+\FloatBarrier  % Prevents figures from floating past this point
 \bibliographystyle{plain}  % The style of your bibliography (e.g., plain, ieee, acm, etc.)
 \bibliography{references}  % Name of the .bib file without the extension
 
