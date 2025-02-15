@@ -64,6 +64,7 @@ In this test (Figure \ref{fig:Infinite}) we release $10^4$ particles in a horizo
 In this test (Figure \ref{fig:SemiInfinite}), the arrival times of the particles are recorded on the left absorbing boundary. The spatial bins are logarithmically spaced and the number of particles per time bin is divided by the total number of particles and the width of the temporal bin. This result is compared against its analytical solution, namely:
 \begin{equation}
         c(t) = \frac{x_0 e^{-\frac{x_0^2}{4 D t}}}{\sqrt{4 \pi D t^3}}
+        \label{eq:SemiInfConc}
 \end{equation}
 where $x_0$ is the distance between the vertical plane where particle are released and the absorbing vertical plane.
 
@@ -578,7 +579,7 @@ Overall, the rates from figure \ref{fig:reactionRatesMatrixDecay} (a) and (b) co
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.5\textwidth]{images/effVsDecayRatesLogLog.png}
-    \caption{Effective reaction rate vs radioactive decays in the porous matrix. The radioactive decay in the porous matrix ranges between 0.001 and 0.1. The results indicate a power law relation between the radioactive decay in the porous matrix and the corresponding values of effective decay rate. The effective decay rate can be approximated by $K_{eff} = exp(-3.87+0.51*log(K_{matrixDecay}))$.}
+    \caption{Effective reaction rate vs radioactive decays in the porous matrix. The radioactive decay in the porous matrix ranges between 0.001 and 0.1. The results indicate a power law relation between the radioactive decay in the porous matrix and the corresponding values of effective decay rate. The effective decay rate can be approximated by $K_{eff} = e^{-3.87+0.51*log(K_{matrixDecay})}$.}
     \label{fig:KeffVsDmLog}
 \end{figure}
 
@@ -598,7 +599,7 @@ As the molecular diffusion of particles in the porous matrix decreases, the effe
         \includegraphics[width=\textwidth]{images/kEffVsDfDmRatioLogLog.png}
         \caption{Loglog scale}
     \end{subfigure}
-    \caption{Effective radioactive decay for different values of molecular diffusion in the porous matrix. The characteristic time for all the simulation is $\tau_d=(u_b-l_b)^2/D_f=4/0.01=400$ while $D_m$ ranges between 0.01 and 0.00001. The value of the decay rate in the fracture is 0.01 and does not change between realisations. Setup: $10^6$ particles and max $10^6$ time steps with dt=1, Df=0.01 and Dm=0.001. The results indicate a power law relation between the ratio of matrix to fracture molecular diffusion and the corresponding values of effective decay rate. The effective decay rate can be approximated by $K_{eff} = exp(-5.32+0.38*log(D_m/D_f))$.}
+    \caption{Effective radioactive decay for different values of molecular diffusion in the porous matrix. The characteristic time for all the simulation is $\tau_d=(u_b-l_b)^2/D_f=4/0.01=400$ while $D_m$ ranges between 0.01 and 0.00001. The value of the decay rate in the fracture is 0.01 and does not change between realisations. Setup: $10^6$ particles and max $10^6$ time steps with dt=1, Df=0.01 and Dm=0.001. The results indicate a power law relation between the ratio of matrix to fracture molecular diffusion and the corresponding values of effective decay rate. The effective decay rate can be approximated by $K_{eff} = e^{-5.32+0.38*log(D_m/D_f)}$.}
     \label{fig:KeffVsDm}
 \end{figure}
 
@@ -980,8 +981,24 @@ Breakthrough curve tail in loglog scale and linear regression to fit the tail (f
     \includegraphics[width=0.45\textwidth]{images/fromOpenPNM/loglogBTC.png}
     \hspace{0.05\textwidth}
     \includegraphics[width=0.45\textwidth]{images/fromOpenPNM/interpSemiLogTail.png}
-    \caption{Breakthrough curve tail in loglog scale and linear regression to fit the tail}
+    \caption{Breakthrough curve tail in loglog scale and linear regression to fit the tail. The tail of the concentration is approximated by the following power law: $1-C=e^{0.2128-1.1889x}$}
     \label{fig:LinInterpLogTail}
+\end{figure}
+
+\FloatBarrier  % Prevents figures from floating past this point
+\subsection{Effective diffusion from breakthrough curve fitting}
+The effective diffusion is computed by fitting the analytical solution of the concentration profile in time at a specified cross section to the breakthrough curve obtained from a heterogeneous domain where the conductance values of the throats is logarithmically distributed. Provided that equation \ref{eq:SemiInfConc} is the analytical solution of the diffusion equation for a semi-infinite domain where the mass is introduced through a pulse injection, its integral in time (equation \ref{eq:CumBTC}) represents the analytical solution for a continuous injection.
+\begin{equation}
+    C(t) = - \frac{\sqrt{D} t^{3/2} erf\left( \frac{x_0}{2 \sqrt{Dt}} \right)}{\sqrt{D t^3}}
+    \label{eq:CumBTC}
+\end{equation}
+In equation \ref{eq:CumBTC} $x_0$ is the distance between injection point and the control section and $erf$ is the error function.
+TO obtain a better fitting, the experimental times and breakthrough curve values from OpenPNM are normalised before performing the optimisation. Initial, experimental and best normalised breakthrough curve are shown in figure \ref{fig:NormBTC}.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/fromOpenPNM/NormBTC.png}
+    \caption{Normalised initial (orange), experimental (blue) and optimised (green) breakthrough curves}
+    \label{fig:NormBTC}
 \end{figure}
 
 \FloatBarrier  % Prevents figures from floating past this point
