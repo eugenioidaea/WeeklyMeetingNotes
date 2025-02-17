@@ -924,9 +924,9 @@ where $s=0.5$ is the standard deviation $\sigma$ of the underlying normal distri
 The setup for computing these values is illustrated in figure \ref{fig:EffDiffVsKdVar3Dsetup}.
 \begin{figure}[htbp!]
     \centering
-    \includegraphics[width=0.45\textwidth]{images/fromOpenPNM/Grid3D10x5x5.png}
+    \includegraphics[width=0.45\textwidth]{images/fromOpenPNM/Grid3D100x10x10.png}
     \hspace{0.05\textwidth}
-    \includegraphics[width=0.45\textwidth]{images/fromOpenPNM/ConcGrid3D10x5x5.png}
+    \includegraphics[width=0.45\textwidth]{images/fromOpenPNM/ConcGrid3D100x10x10.png}
     \caption{Grid and concentration for effective diffusion evaluation for different variance of the conductance}
     \label{fig:EffDiffVsKdVar3Dsetup}
 \end{figure}
@@ -1000,6 +1000,7 @@ TO obtain a better fitting, the experimental times and breakthrough curve values
     \caption{Normalised initial (orange), experimental (blue) and optimised (green) breakthrough curves}
     \label{fig:NormBTC}
 \end{figure}
+The molecular diffusion is $D_{mol}=10^{-5} \: m^2/s$, the initial guess for the effective diffusion is $D_{0}=10^{-4} \: m^2/s$ and the optimised value of the diffusion is $D_{eff}=9.225*10^{-4} \: m^2/s$.
 
 \FloatBarrier  % Prevents figures from floating past this point
 \bibliographystyle{plain}  % The style of your bibliography (e.g., plain, ieee, acm, etc.)
