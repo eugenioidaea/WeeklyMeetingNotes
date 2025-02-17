@@ -917,8 +917,10 @@ Having defined the effective diffusion as equation \ref{eq:EffDiff}, we assessed
 where $s=0.5$ is the standard deviation $\sigma$ of the underlying normal distribution, $loc$ is a parameter that shifts the distribution along the x-axis and $scale$ corresponds to the exponential of the mean of the underlying distribution, that is $ln(scale)=\mu$. Figure \ref{fig:EffDiffVsKdVar3Dsetup} illustrates the effective diffusion for different values of the underlying variance of the conductance distribution.
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.5\textwidth]{images/fromOpenPNM/EffDiffVsKdVar.png}
-    \caption{Effective diffusion vs conductance distribution variance}
+    \includegraphics[width=0.45\textwidth]{images/fromOpenPNM/EffDiffVsKdVar.png}
+    \hspace{0.05\textwidth}
+    \includegraphics[width=0.45\textwidth]{images/fromOpenPNM/logNormKd3D.png}
+    \caption{Effective diffusion vs conductance distribution variance. The histogram refers to the last simulation where s=6.}
     \label{fig:EffDiffVsKdVar}
 \end{figure}
 The setup for computing these values is illustrated in figure \ref{fig:EffDiffVsKdVar3Dsetup}.
@@ -927,7 +929,7 @@ The setup for computing these values is illustrated in figure \ref{fig:EffDiffVs
     \includegraphics[width=0.45\textwidth]{images/fromOpenPNM/Grid3D100x10x10.png}
     \hspace{0.05\textwidth}
     \includegraphics[width=0.45\textwidth]{images/fromOpenPNM/ConcGrid3D100x10x10.png}
-    \caption{Grid and concentration for effective diffusion evaluation for different variance of the conductance}
+    \caption{Grid and concentration for effective diffusion evaluation for variance s=6.}
     \label{fig:EffDiffVsKdVar3Dsetup}
 \end{figure}
 
