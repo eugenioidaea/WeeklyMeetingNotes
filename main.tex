@@ -920,7 +920,7 @@ where $s=0.5$ is the standard deviation $\sigma$ of the underlying normal distri
     \includegraphics[width=0.45\textwidth]{images/fromOpenPNM/EffDiffVsKdVar.png}
     \hspace{0.05\textwidth}
     \includegraphics[width=0.45\textwidth]{images/fromOpenPNM/logNormKd3D.png}
-    \caption{Effective diffusion vs conductance distribution variance. The histogram refers to the last simulation where s=6.}
+    \caption{Effective diffusion vs conductance distribution variance in 100 simulations. The histogram shows the distribution of the values of conductance for a throat network where where the variance s=6.}
     \label{fig:EffDiffVsKdVar}
 \end{figure}
 The setup for computing these values is illustrated in figure \ref{fig:EffDiffVsKdVar3Dsetup}.
@@ -929,7 +929,7 @@ The setup for computing these values is illustrated in figure \ref{fig:EffDiffVs
     \includegraphics[width=0.45\textwidth]{images/fromOpenPNM/Grid3D100x10x10.png}
     \hspace{0.05\textwidth}
     \includegraphics[width=0.45\textwidth]{images/fromOpenPNM/ConcGrid3D100x10x10.png}
-    \caption{Grid and concentration for effective diffusion evaluation for variance s=6.}
+    \caption{Grid (left) and concentration (right) for effective diffusion evaluation for variance s=6.}
     \label{fig:EffDiffVsKdVar3Dsetup}
 \end{figure}
 
@@ -1003,6 +1003,79 @@ TO obtain a better fitting, the experimental times and breakthrough curve values
     \label{fig:NormBTC}
 \end{figure}
 The molecular diffusion is $D_{mol}=10^{-5} \: m^2/s$, the initial guess for the effective diffusion is $D_{0}=10^{-4} \: m^2/s$ and the optimised value of the diffusion is $D_{eff}=9.225*10^{-4} \: m^2/s$.
+
+\FloatBarrier  % Prevents figures from floating past this point
+\section{Diffusion equation in OpenPNM}
+
+\subsection{The Governing Equation}
+The transient form of \textbf{Fick's second law} is:
+\begin{equation}
+    \frac{\partial C}{\partial t} = D \nabla^2 C
+\end{equation}
+Where:
+\begin{itemize}
+    \item $C$ is the concentration of the species;
+    \item $D$ is the diffusion coefficient (assumed constant);
+    \item $t$ is time.
+\end{itemize}
+
+\subsection{Discretization in OpenPNM}
+OpenPNM represents the system as a \textbf{pore network}, where:
+\begin{itemize}
+    \item \textbf{Pores} are nodes where species concentration is defined;
+    \item \textbf{Throats} are connections between pores, where mass flux occurs.
+\end{itemize}
+The algorithm discretizes the diffusion equation using \textbf{mass conservation} across each pore.
+For a pore $i$, the transient mass balance is:
+\begin{equation}
+    V_p \frac{d C_i}{d t} = \sum_j G_{ij} (C_j - C_i)
+\end{equation}
+Where:
+\begin{itemize}
+    \item $V_p$ is the volume of the pore;
+    \item $C_i$ is the concentration in pore $i$;
+    \item $G_{ij}$ is the conductance of the throat connecting pore $i$ and $j$;
+    \item The summation is over all neighboring pores.
+\end{itemize}
+
+\subsection{Diffusive Conductance Calculation}
+The diffusive conductance $G_{ij}$ depends on:
+\begin{equation}
+    G_{ij} = \frac{D A}{L}
+\end{equation}
+Where:
+\begin{itemize}
+    \item $D$ is the diffusion coefficient;
+    \item $A$ is the cross-sectional area of the throat;
+    \item $L$ is the length of the throat (or the center-to-center distance between pores).
+\end{itemize}
+OpenPNM handles \textbf{geometry models} to calculate these quantities automatically based on the pore-throat network.
+
+\subsection{Time-Stepping Method}
+For the transient simulation, OpenPNM typically uses:
+\begin{itemize}
+    \item \textbf{Implicit (Backward Euler)} method: it ensures stability for larger time steps.
+\end{itemize}
+Discretized for each pore:
+\begin{equation}
+    \frac{C_i^{n+1} - C_i^n}{\Delta t} = \sum_j G_{ij} (C_j^{n+1} - C_i^{n+1})
+\end{equation}
+Where:
+\begin{itemize}
+    \item $C^{n+1}$ is the new concentration after time $\Delta t$.
+    \item $C^n$ is the concentration at the previous time step.
+\end{itemize}
+This results in a \textbf{linear system of equations} that OpenPNM solves using efficient sparse solvers (via \textbf{SciPy}).
+
+\iffalse
+\subsection{Solution Process}
+\begin{enumerate}
+    \item \textbf{Assemble Matrix}: Based on the pore-throat connectivity and conductance.
+    \item \textbf{Apply Boundary Conditions}: Fixed concentrations (Dirichlet) or flux (Neumann) conditions.
+    \item \textbf{Solve Linear System}: Uses \textbf{SciPy's sparse solver} to compute concentrations at each time step.
+    \item \textbf{Iterate Over Time}: Advance by small increments $\Delta t$ until the desired simulation time is reached.
+\end{enumerate}
+\fi
 
 \FloatBarrier  % Prevents figures from floating past this point
 \bibliographystyle{plain}  % The style of your bibliography (e.g., plain, ieee, acm, etc.)
