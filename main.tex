@@ -835,7 +835,7 @@ This is confirmed by the numerical setup in figure \ref{fig:Network2D} which is 
     \item spacing $10^{-3} \: m$;
     \item pore diameter $spacing/10$
     \item molecular diffusion $10^{-5} \: m^2/s$;
-    \item grid $10x10$ cells;
+    \item grid $1000x1000$ cells;
     \item inlet concentration: $C_{in}=10$;
     \item outlet concentration: $C_{out}=5$;
     \item throat diameters $t_d$ lognormally distributed (eq. \ref{eq:LogNormDist}).  
@@ -844,14 +844,14 @@ The heat map of the concentration across the pore-throat network is reported in 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.5\textwidth]{images/fromOpenPNM/concentrationHeatMap10x10.png}
-    \caption{Concentration heat map for a 2D pore-throat network with domain size of 100x10 cells}
+    \caption{Concentration heat map for a 2D pore-throat network with domain size of 10x10 cells}
     \label{fig:Concentration100x10}
 \end{figure}
 and the numerical outputs are:
 \begin{itemize}
-    \item flow rate $Q_d = 1.07646 * 10^{-10} \: m^3/s$;
-    \item conductance from OpenPNM: $K_d = xPores *Q_d/\Delta C = 2.1529 * 10^{-11}$;
-    \item conductance geometric mean: $K_d = 1.9025*10^{-11}$.
+    \item flow rate $Q_d = 9.83934 * 10^{-11} \: m^3/s$;
+    \item conductance from OpenPNM: $K_d = Q_d/\Delta C = 1.967869 * 10^{-11}$;
+    \item conductance geometric mean: $K_d = 1.965183*10^{-11}$.
 \end{itemize}
 
 \FloatBarrier  % Prevents figures from floating past this point
@@ -991,7 +991,7 @@ Breakthrough curve tail in loglog scale and linear regression to fit the tail (f
 \subsection{Effective diffusion from breakthrough curve fitting}
 The effective diffusion is computed by fitting the analytical solution of the concentration profile in time at a specified cross section to the breakthrough curve obtained from a heterogeneous domain where the conductance values of the throats is logarithmically distributed. Provided that equation \ref{eq:SemiInfConc} is the analytical solution of the diffusion equation for a semi-infinite domain where the mass is introduced through a pulse injection, its integral in time (equation \ref{eq:CumBTC}) represents the analytical solution for a continuous injection.
 \begin{equation}
-    C(t) = - \frac{\sqrt{D} t^{3/2} erf\left( \frac{x_0}{2 \sqrt{Dt}} \right)}{\sqrt{D t^3}}
+    C(t) = 1 - erf \left( \frac{x_0}{2 \sqrt{D t}} \right)
     \label{eq:CumBTC}
 \end{equation}
 In equation \ref{eq:CumBTC} $x_0$ is the distance between injection point and the control section and $erf$ is the error function.
@@ -1003,6 +1003,13 @@ TO obtain a better fitting, the experimental times and breakthrough curve values
     \label{fig:NormBTC}
 \end{figure}
 The molecular diffusion is $D_{mol}=10^{-5} \: m^2/s$, the initial guess for the effective diffusion is $D_{0}=10^{-4} \: m^2/s$ and the optimised value of the diffusion is $D_{eff}=9.225*10^{-4} \: m^2/s$.
+\subsection{One vs two paramters BTC fitting}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/fromOpenPNM/btcFitting2param.png}
+    \caption{BTC fitting using 1 and 2 parameters analytical expressions}
+    \label{fig:BTCfitting}
+\end{figure}
 
 \FloatBarrier  % Prevents figures from floating past this point
 \section{Diffusion equation in OpenPNM}
@@ -1076,6 +1083,68 @@ This results in a \textbf{linear system of equations} that OpenPNM solves using 
     \item \textbf{Iterate Over Time}: Advance by small increments $\Delta t$ until the desired simulation time is reached.
 \end{enumerate}
 \fi
+
+\section{Fracture network characterization}
+In the context of simulating hydrogen storage in a porous medium, incorporating realistic features of fracture networks into numerical models is crucial for improving the accuracy of predictions regarding hydrogen transport, storage capacity, and overall system performance. Here are key features of a fracture network that can enhance the realism of such simulations:
+
+\subsection{Fracture Geometry and Distribution}
+\begin{itemize}
+    \item \textbf{Fracture Length and Orientation:} Including a distribution of fracture lengths and orientations (random or based on geological data) allows for more realistic simulations, as fractures in nature are rarely uniform or aligned in one direction.
+    \item \textbf{Fracture Aperture (Width):} Varying the aperture of fractures is important for accurately modeling the permeability of the rock and the flow of hydrogen through the fractures.
+    \item \textbf{Fracture Connectivity:} Properly modeling the connectivity between fractures, whether they form a continuous network or isolated segments, is crucial for determining the flow paths for hydrogen.
+    \item \textbf{Fracture Density:} The density of fractures influences the total surface area and the volume of the fracture network, which can significantly affect storage and release rates of hydrogen.
+\end{itemize}
+
+\subsection{Permeability Variability}
+\begin{itemize}
+    \item \textbf{Spatial Variability in Permeability:} Fractures have variable permeability depending on their size, orientation, and aperture. The numerical model should account for the local heterogeneity in permeability, which can greatly influence flow dynamics.
+    \item \textbf{Matrix-Scale Permeability Interactions:} Hydrogen storage also depends on the permeability of the surrounding rock matrix. The interaction between fractures and the matrix permeability should be modeled to simulate effective hydrogen storage and diffusion.
+\end{itemize}
+
+\subsection{Fracture-Tortuosity and Flow Path Length}
+\begin{itemize}
+    \item \textbf{Tortuosity:} The tortuosity of fracture networks (how much the path deviates from a straight line) is important in determining the effective flow rate through the network. Realistic tortuosity values improve the accuracy of the flow simulations, especially for hydrogen diffusion and advection.
+    \item \textbf{Flow Path Length:} The longer the flow path, the higher the resistance to hydrogen movement. Including these variations in path length is essential for accurate modeling of hydrogen storage and transport.
+\end{itemize}
+
+\subsection{Fracture Network Heterogeneity}
+\begin{itemize}
+    \item \textbf{Fracture Clusters:} Fractures may be clustered together or form distinct zones with different fracture densities. This heterogeneity can influence gas migration, pressure distribution, and hydrogen retention.
+    \item \textbf{Multiscale Features:} Modeling fractures at different scales (from microfractures to large faults) is important for capturing the full complexity of the network and its impact on hydrogen storage.
+\end{itemize}
+
+\subsection{5. Fracture-Fluid Interactions}
+\begin{itemize}
+    \item \textbf{Adsorption and Desorption:} Hydrogen can adsorb onto the surface of the fractures and matrix, influencing the storage capacity. Simulating these processes (with proper isotherms) adds realism to the model.
+    \item \textbf{Capillary Pressure:} Fractures with varying apertures will exhibit different capillary pressures that affect the hydrogen’s ability to occupy certain regions of the rock. This can be critical in assessing the ability to store hydrogen effectively under pressure.
+    \item \textbf{Fracture Sealing:} Over time, fractures may seal due to mineral precipitation, reducing permeability. This time-dependent behavior must be modeled for long-term simulations of hydrogen storage.
+\end{itemize}
+
+\subsection{6. Pressure and Temperature Effects}
+\begin{itemize}
+    \item \textbf{Pressure-Dependent Permeability:} Permeability may change with pressure (for example, fractures can close or open based on the storage pressure), affecting hydrogen storage and transport efficiency.
+    \item \textbf{Thermal Effects:} Temperature changes during the compression and decompression of hydrogen can affect the behavior of the fractures, as thermal expansion or contraction may alter fracture apertures and network connectivity.
+\end{itemize}
+
+\subsection{7. Hydrogen Diffusion and Adsorption Models}
+\begin{itemize}
+    \item \textbf{Transport in Fractures:} The transport of hydrogen through fractures is often dominated by advection and diffusion. The model should incorporate both mechanisms to capture the full picture of hydrogen flow.
+    \item \textbf{Surface Diffusion in Fracture Networks:} In fractured rocks, hydrogen may diffuse along fracture surfaces, and this effect should be included in the model for more accurate simulations of storage capacity.
+\end{itemize}
+
+\subsection{8. Time-Dependent Fracture Behavior}
+\begin{itemize}
+    \item \textbf{Fracture Closure or Opening Due to Stress Changes:} Stress changes during hydrogen injection or withdrawal may cause fractures to close or open, which can impact the storage efficiency over time.
+    \item \textbf{Seismic and Poroelastic Effects:} Incorporating the potential for fracture network changes due to seismic activity or pore pressure variations enhances the model’s realism, especially in long-term storage scenarios.
+\end{itemize}
+
+\subsection{9. Coupled Geomechanics and Fluid Flow}
+\begin{itemize}
+    \item \textbf{Coupling Geomechanical Deformation with Fluid Flow:} Fractures can change over time due to mechanical deformation from hydrogen injection. Coupling geomechanical models (which account for stress and strain in the rock) with fluid flow models (describing the movement of hydrogen) can more realistically simulate hydrogen behavior under different conditions.
+    \item \textbf{Fracture Network Evolution:} Over time, the fracture network may evolve due to mechanical, chemical, or thermal processes. Including these changes in the model can provide better predictions for long-term storage.
+\end{itemize}
+
+By integrating these realistic features of fracture networks into the numerical model, it is possible to improve the accuracy and reliability of simulations for hydrogen storage, helping to optimize storage strategies and ensure long-term effectiveness.
 
 \FloatBarrier  % Prevents figures from floating past this point
 \bibliographystyle{plain}  % The style of your bibliography (e.g., plain, ieee, acm, etc.)
