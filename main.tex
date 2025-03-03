@@ -1003,12 +1003,35 @@ TO obtain a better fitting, the experimental times and breakthrough curve values
     \label{fig:NormBTC}
 \end{figure}
 The molecular diffusion is $D_{mol}=10^{-5} \: m^2/s$, the initial guess for the effective diffusion is $D_{0}=10^{-4} \: m^2/s$ and the optimised value of the diffusion is $D_{eff}=9.225*10^{-4} \: m^2/s$.
+
+\FloatBarrier  % Prevents figures from floating past this point
 \subsection{One vs two paramters BTC fitting}
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.5\textwidth]{images/fromOpenPNM/btcFitting2param.png}
     \caption{BTC fitting using 1 and 2 parameters analytical expressions}
     \label{fig:BTCfitting}
+\end{figure}
+
+\FloatBarrier  % Prevents figures from floating past this point
+\subsection{Validation of TransientFickianDiffusion OpenPNM algorithm}
+
+\FloatBarrier  % Prevents figures from floating past this point
+\subsection{Real porous media fractured network}
+Tomography of a sample from the Green River Formation and reconstruction of a fractured portion of its porous matrix in OpenPNM through the application of the SNOW algorithm.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/digitalRocks/GreenRiverFormation.png}
+    \caption{Tomography a heat-induced fractured porous media.}
+    \label{fig:GreenRiver}
+\end{figure}
+\begin{figure}[htbp!]
+    \centering
+    \includegraphics[width=0.45\textwidth]{images/digitalRocks/fractureDetail.png}
+    \hspace{0.05\textwidth}
+    \includegraphics[width=0.45\textwidth]{images/digitalRocks/fractureNetwork.png}
+    \caption{Fracture network in OpenPNM}
+    \label{fig:FractureNet}
 \end{figure}
 
 \FloatBarrier  % Prevents figures from floating past this point
