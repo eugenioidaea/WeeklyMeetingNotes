@@ -1026,7 +1026,7 @@ Network description:
 \end{itemize}
 Boundary conditions:
 \begin{itemize}
-    \item inlet concentration: $C_{in}=\frac{1}{1-cs}+C_{out}$ where cs is the Control Section relative distance from the inlet;
+    \item inlet concentration: $C_{in}=\frac{L_{domain}-C_{out}*cs}{L_{domain}-cs}$ where cs is the Control Section distance from the inlet defined as $cs = L_{domain}*x$;
     \item outlet concentration: $C_{out}=0$.
 \end{itemize}
 Initial condition:
@@ -1065,8 +1065,14 @@ Tomography of a sample from the Green River Formation and reconstruction of a fr
     \centering
     \includegraphics[width=0.45\textwidth]{images/digitalRocks/fractureDetail.png}
     \hspace{0.05\textwidth}
-    \includegraphics[width=0.45\textwidth]{images/digitalRocks/fractureNetwork.png}
+    \includegraphics[width=0.45\textwidth]{images/digitalRocks/fractureBinary.png}
     \caption{Fracture network in OpenPNM}
+    \label{fig:FractureBin}
+\end{figure}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/digitalRocks/fractureNetwork.png}
+    \caption{Pore-throat network superimposed on a binary image.}
     \label{fig:FractureNet}
 \end{figure}
 
