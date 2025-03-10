@@ -1057,7 +1057,7 @@ Initial condition:
 Tomography of a sample from the Green River Formation and reconstruction of a fractured portion of its porous matrix in OpenPNM through the application of the SNOW algorithm.
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.5\textwidth]{images/digitalRocks/GreenRiverFormation.png}
+    \includegraphics[width=0.8\textwidth]{images/digitalRocks/GreenRiverFormation.png}
     \caption{Tomography a heat-induced fractured porous media.}
     \label{fig:GreenRiver}
 \end{figure}
@@ -1066,13 +1066,31 @@ Tomography of a sample from the Green River Formation and reconstruction of a fr
     \includegraphics[width=0.45\textwidth]{images/digitalRocks/fractureDetail.png}
     \hspace{0.05\textwidth}
     \includegraphics[width=0.45\textwidth]{images/digitalRocks/fractureBinary.png}
-    \caption{Fracture network in OpenPNM}
+    \caption{From grayscale to binary image setting a threshold=0.5: below is white (fracture) and above is black (porous matrix).}
     \label{fig:FractureBin}
 \end{figure}
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.5\textwidth]{images/digitalRocks/fractureNetwork.png}
+    \includegraphics[width=0.8\textwidth]{images/digitalRocks/fractureNetwork.png}
     \caption{Pore-throat network superimposed on a binary image.}
+    \label{fig:FractureNet}
+\end{figure}
+
+\FloatBarrier  % Prevents figures from floating past this point
+\section{Power-law fracture fracture lengths and lognormal diameters}
+\begin{figure}[htbp!]
+    \centering
+    \includegraphics[width=0.45\textwidth]{images/fromOpenPNM/cdfLengths.png}
+    \hspace{0.05\textwidth}
+    \includegraphics[width=0.45\textwidth]{images/fromOpenPNM/diamtersDist.png}
+    \caption{Left: cdf of the length distribution of fractures on a 20x10 network inspired to the M2 sample from the paper of Vega2022. Right: lognormal distribution of diameters with mean of the underlying Normal distribution = $10^{-4}$ m.}
+    \label{fig:Validation2}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/fromOpenPNM/conductancesDist.png}
+    \caption{Distribution of conductances: $L_iD_{mol}A_i$.}
     \label{fig:FractureNet}
 \end{figure}
 
