@@ -1078,20 +1078,34 @@ Tomography of a sample from the Green River Formation and reconstruction of a fr
 
 \FloatBarrier  % Prevents figures from floating past this point
 \section{Power-law fracture fracture lengths and lognormal diameters}
+\subsection{dfnWorks}
+Technical installation and tutorials issues.
+
+\subsection{OpenPNM}
 \begin{figure}[htbp!]
     \centering
     \includegraphics[width=0.45\textwidth]{images/fromOpenPNM/cdfLengths.png}
     \hspace{0.05\textwidth}
-    \includegraphics[width=0.45\textwidth]{images/fromOpenPNM/diamtersDist.png}
+    \includegraphics[width=0.45\textwidth]{images/fromOpenPNM/diametersDist.png}
     \caption{Left: cdf of the length distribution of fractures on a 20x10 network inspired to the M2 sample from the paper of Vega2022. Right: lognormal distribution of diameters with mean of the underlying Normal distribution = $10^{-4}$ m.}
-    \label{fig:Validation2}
+    \label{fig:LengthDist}
 \end{figure}
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\textwidth]{images/fromOpenPNM/conductancesDist.png}
     \caption{Distribution of conductances: $L_iD_{mol}A_i$.}
-    \label{fig:FractureNet}
+    \label{fig:ConductanceDist}
+\end{figure}
+
+\subsection{Python}
+\begin{figure}[htbp!]
+    \centering
+    \includegraphics[width=0.45\textwidth]{images/LognormalFrac.png}
+    \hspace{0.05\textwidth}
+    \includegraphics[width=0.45\textwidth]{images/PowerlawFrac.png}
+    \caption{Left: mean length=0.5 and std=0.02. Right: min len=0.1 max len=1, exponent=-2.58.}
+    \label{fig:LengthDistPy}
 \end{figure}
 
 \FloatBarrier  % Prevents figures from floating past this point
