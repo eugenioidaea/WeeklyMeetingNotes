@@ -1169,6 +1169,23 @@ Technical installation and tutorials issues.
 
 \FloatBarrier  % Prevents figures from floating past this point
 \section{3D diffusion simulation with dfnWorks}
+\subsection{Jeffrey simulation}
+Python file setup:
+\begin{itemize}
+    \item domain size [m]: $10*10*10$;
+    \item shape [-]: elliptic;
+    \item distribution [-]: truncated power-law with $\alpha=1.8$ and radius between 1 and 10;
+    \item fracture intensity for the family: p32=1.1;
+    \item aperture correlated to legth.
+\end{itemize}
+Input file setup:
+\begin{itemize}
+    \item no gravity;
+    \item molecular diffusion [m2/s]: $10^{-9}$;
+    \item porosity and tortuosity: relevant?
+    \item saturation and capillary curves: relevant?
+    \item no advection;
+\end{itemize}
 \begin{figure}[htbp!]
     \centering
     \includegraphics[width=0.45\textwidth]{images/dfnWorksImages/3DdfnDiff.png}
@@ -1176,6 +1193,31 @@ Technical installation and tutorials issues.
     \includegraphics[width=0.45\textwidth]{images/dfnWorksImages/btcFrom3D.png}
     \caption{Left: 3D fractured network from dfnWorks simulation. Right: breakthrough curves for 1000 years time span.}
     \label{fig:3DdfnWorks}
+\end{figure}
+\subsection{Eugenio simulation}
+Python file setup:
+\begin{itemize}
+    \item domain size [m]: $5*5*5$;
+    \item shape [-]: elliptic;
+    \item distribution [-]: truncated power-law with $\alpha=1.8$ and radius between 1 and 5;
+    \item fracture intensity for the family: p32=1.5;
+    \item aperture correlated to legth.
+\end{itemize}
+Input file setup:
+\begin{itemize}
+    \item no gravity;
+    \item molecular diffusion [m2/s]: $10^{-7}$;
+    \item porosity and tortuosity: relevant?
+    \item saturation and capillary curves: relevant?
+    \item no advection;
+\end{itemize}
+\begin{figure}[htbp!]
+    \centering
+    \includegraphics[width=0.45\textwidth]{images/dfnWorksImages/3DdfnDiffEug.png}
+    \hspace{0.05\textwidth}
+    \includegraphics[width=0.45\textwidth]{images/dfnWorksImages/btcFrom3Deug.png}
+    \caption{Left: 3D fractured network from dfnWorks simulation. Right: breakthrough curves for 1000 years time span.}
+    \label{fig:3DdfnWorksEug}
 \end{figure}
 
 \FloatBarrier  % Prevents figures from floating past this point
