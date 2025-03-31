@@ -1169,7 +1169,7 @@ Technical installation and tutorials issues.
 
 \FloatBarrier  % Prevents figures from floating past this point
 \section{3D diffusion simulation with dfnWorks}
-\subsection{Jeffrey simulation}
+\subsection{Jeffrey simulation V1}
 Python file setup:
 \begin{itemize}
     \item domain size [m]: $10*10*10$;
@@ -1194,7 +1194,7 @@ Input file setup:
     \caption{Left: 3D fractured network from dfnWorks simulation. Right: breakthrough curves for 1000 years time span.}
     \label{fig:3DdfnWorks}
 \end{figure}
-\subsection{Eugenio simulation}
+\subsection{Eugenio simulation V2}
 Python file setup:
 \begin{itemize}
     \item domain size [m]: $5*5*5$;
@@ -1207,8 +1207,8 @@ Input file setup:
 \begin{itemize}
     \item no gravity;
     \item molecular diffusion [m2/s]: $10^{-7}$;
-    \item porosity and tortuosity: relevant?
-    \item saturation and capillary curves: relevant?
+    \item porosity=0.25 and tortuosity=0.5: why required?
+    \item saturation and capillary curves: why required?
     \item no advection;
 \end{itemize}
 \begin{figure}[htbp!]
@@ -1216,6 +1216,31 @@ Input file setup:
     \includegraphics[width=0.45\textwidth]{images/dfnWorksImages/3DdfnDiffEug.png}
     \hspace{0.05\textwidth}
     \includegraphics[width=0.45\textwidth]{images/dfnWorksImages/btcFrom3Deug.png}
+    \caption{Left: 3D fractured network from dfnWorks simulation. Right: breakthrough curves for 1000 years time span.}
+    \label{fig:3DdfnWorksEug}
+\end{figure}
+\subsection{Eugenio simulation V3}
+Python file setup:
+\begin{itemize}
+    \item domain size [m]: $5*5*5$;
+    \item shape [-]: elliptic;
+    \item distribution [-]: truncated power-law with $\alpha=3.0$ and radius between 1 and 5;
+    \item fracture intensity for the family: p32=2.0;
+    \item aperture correlated to legth.
+\end{itemize}
+Input file setup:
+\begin{itemize}
+    \item no gravity;
+    \item molecular diffusion [m2/s]: $10^{-7}$;
+    \item porosity=0.25 and tortuosity=0.5: why required?
+    \item saturation and capillary curves: why required?
+    \item no advection;
+\end{itemize}
+\begin{figure}[htbp!]
+    \centering
+    \includegraphics[width=0.45\textwidth]{images/dfnWorksImages/3DdfnDiffEugV3.png}
+    \hspace{0.05\textwidth}
+    \includegraphics[width=0.45\textwidth]{images/dfnWorksImages/btcFrom3DeugV3.png}
     \caption{Left: 3D fractured network from dfnWorks simulation. Right: breakthrough curves for 1000 years time span.}
     \label{fig:3DdfnWorksEug}
 \end{figure}
