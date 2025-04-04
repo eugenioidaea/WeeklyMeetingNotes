@@ -1174,6 +1174,15 @@ Technical installation and tutorials issues.
     \caption{BTC control section and diffusive flux pores.}
     \label{fig:ControlSecDiffFlux}
 \end{figure}
+The breakthrough curves on the left panel of figure \ref{fig:BTCandDiffFlux} are computed by flux-averaging the concentration (element wise product) recorded on the control section
+\begin{equation}
+    \frac{\sum (q \circ c)}{\sum q}.
+\end{equation}
+The diffusive flux at the second last pore (N-1) is given by
+\begin{equation}
+    j = D_{mol} \frac{c_{N-1}}{\Delta x}
+\end{equation}
+where $D_{mol}=10^{-5} m^2/s$ and $\Delta x=10^{-3} m$.
 \begin{figure}[htbp!]
     \centering
     \includegraphics[width=0.45\textwidth]{images/fromOpenPNM/BTCsVsVar.png}
@@ -1261,6 +1270,14 @@ Input file setup:
     \includegraphics[width=0.45\textwidth]{images/dfnWorksImages/btcFrom3DeugV3.png}
     \caption{Left: 3D fractured network from dfnWorks simulation. Right: breakthrough curves for 1000 years time span.}
     \label{fig:3DdfnWorksEugV3}
+\end{figure}
+\begin{figure}[htbp!]
+    \centering
+    \includegraphics[width=0.45\textwidth]{images/dfnWorksImages/btcFrom3DeugV3norm.png}
+    \hspace{0.05\textwidth}
+    \includegraphics[width=0.45\textwidth]{images/dfnWorksImages/complementaryBtcFrom3DeugV3norm.png}
+    \caption{Left: Plateau-normalised BTC. Right: Complementary plateau-normalised BTC.}
+    \label{fig:3DdfnWorksEugV3norm}
 \end{figure}
 
 \FloatBarrier  % Prevents figures from floating past this point
