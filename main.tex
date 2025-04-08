@@ -4,6 +4,10 @@
 \usepackage{amsmath}
 \usepackage{cite}  % Optional for better citation management
 \usepackage{placeins}
+\usepackage{booktabs}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{xcolor}
 
 \title{Weekly meeting notes}
 \author{Eugenio Pescimoro }
@@ -1194,6 +1198,36 @@ where $D_{mol}=10^{-5} m^2/s$ and $\Delta x=10^{-3} m$.
 
 \FloatBarrier  % Prevents figures from floating past this point
 \section{3D diffusion simulation with dfnWorks}
+The most relevant parameters for simulating hydrogen diffusion through fractured domain are listed in table \ref{tab:dfnWorksParam} with some typical range for fractured shale caprock:
+\begin{table}[htbp]
+\centering
+\small
+\caption{Key Parameters for Simulating Hydrogen Diffusion in Fractured Shale Caprock with \texttt{dfnWorks}}
+\begin{tabular}{@{}p{4cm}p{7cm}p{3.5cm}@{}}
+\toprule
+\textbf{Parameter} & \textbf{Description} & \textbf{Typical Range} \\
+\midrule
+\texttt{domainSize} & Size of the cubic simulation domain & $[5, 5, 5]$ m (minimum representative volume) \\
+\texttt{h} & Mesh resolution & 0.01--0.1 m (refined for fracture detail) \\
+\texttt{p32} & Fracture intensity (area per unit volume) & 0.5--5.0 m\textsuperscript{2}/m\textsuperscript{3} \\
+\texttt{alpha (TPL)} & Power-law exponent for fracture size distribution & 2.0--3.5 \\
+\texttt{min\_radius / max\_radius} & Min/max fracture radius & 0.5--5.0 m \\
+\texttt{kappa} & Fisher distribution concentration (fracture orientation clustering) & 1--20 (higher = tighter clustering) \\
+\texttt{theta / phi} & Mean fracture dip / azimuth & 0--90° / 0--180° (based on stress field) \\
+\texttt{aspect} & Fracture aspect ratio (ellipse) & 1.0–3.0 \\
+\texttt{hy\_function} & Hydraulic aperture correlation model & \texttt{correlated} (size-aperture scaling) \\
+\texttt{hy\_params (alpha, beta)} & Aperture correlation parameters & $\alpha = 10^{-5}$ m, $\beta = 0.5$ \\
+\texttt{POROSITY} & Matrix porosity of shale & 0.05–0.3 \\
+\texttt{TORTUOSITY} & Affects effective diffusion through porous media & 0.2–0.7 \\
+\texttt{DIFFUSION\_COEFFICIENT} & Diffusion coefficient of H\textsubscript{2} in water & $4.5 \times 10^{-9}$ m\textsuperscript{2}/s \\
+\texttt{FLOW\_CONDITION} & Liquid pressure conditions & Dirichlet, e.g., 1.01325 MPa \\
+\texttt{TRANSPORT\_CONDITION} & H\textsubscript{2} concentration boundaries & Dirichlet, e.g., 1 mol/m\textsuperscript{3} at base \\
+\texttt{SATURATION\_FUNCTION} & Controls capillarity in unsaturated zone & Van Genuchten ($\alpha=10^{-3}$, $m=0.5$) \\
+\bottomrule
+\end{tabular}
+\label{tab:dfnWorksParam}
+\end{table}
+
 \subsection{Jeffrey simulation V1}
 Python file setup:
 \begin{itemize}
@@ -1279,6 +1313,116 @@ Input file setup:
     \caption{Left: Plateau-normalised BTC. Right: Complementary plateau-normalised BTC.}
     \label{fig:3DdfnWorksEugV3norm}
 \end{figure}
+First statistical moment (expected value):
+\begin{equation}
+    E\left[X\right] = \int_{-\infty}^{\infty} x f(x) dx.
+\end{equation}
+Second statistical moment:
+\begin{equation}
+    E\left[X^2\right] = \int_{-\infty}^{\infty} x^2 f(x) dx.
+\end{equation}
+Centered second statistical moment (variance):
+\begin{equation}
+    Var(X) = \int_{-\infty}^{\infty} [x-E(x)] f(x) dx = E[X^2]-(E[X])^2.
+\end{equation}
+PDF functions for
+\begin{itemize}
+    \item concentration: \[ f(x) = \frac{dt}{\int_0^{\infty} dt} \]
+    \item time: \[ f(x) = \frac{c(t) dt}{\int_0^{\infty} c(t) dt}. \]
+\end{itemize}
+The concentration statistical moments are
+\begin{equation}
+    E \left[ c \right] = \frac{\int_0^{\infty} c(t) dt}{\int_0^{\infty} dt} = \frac{\int_0^{\infty} c(t) dt}{T} \quad and \quad E[c^2] = \frac{\int_0^{\infty} c^2(t) dt}{\int_0^{\infty} dt}
+\end{equation}
+and the time statistical moments are
+\begin{equation}
+    E \left[ t \right] = \frac{\int_0^{\infty} t c(t) dt}{\int_0^{\infty} c(t) dt} \quad and \quad E[t^2] = \frac{\int_0^{\infty} t^2 c(t) dt}{\int_0^{\infty} c(t) dt}.
+    \label{eq:MRT}
+\end{equation}
+\paragraph{Concentration statistical moments:} the variance of the plateau-normalised BTC is
+\begin{equation}
+    Var(c) = \sum_{i=1}^{n}c_i^2 P(c_i)-\left(\sum_{i=1}^{n}c_i P(c_i)\right)^2 = 0.98668 - 0.99067^2 = 0.0052.
+\end{equation}
+where $P(c_i)=\frac{dt_i}{T}$ with $T$ being the final time of the simulation.
+\paragraph{Time statistical moments:} the variance of concentration-averaged time is
+\begin{equation}
+    Var(t) = \sum_{i=1}^{n}t_i^2 P(t_i)-\left(\sum_{i=1}^{n}t_i P(t_i)\right)^2 = 336461-504^2 = 81811
+\end{equation}
+where $P(t_i)=\frac{c_i dt_i}{\sum_{i=1}^nc_idt_i}$.
+\paragraph{Dispersion Coefficient:} the dispersion coefficient \( D_{\text{disp}} \) is related to the variance and the mean residence time. It is calculated as:
+\[ D_{\text{disp}} = \frac{E[t^2]}{2 E[t]} = 333 \]
+\paragraph{Effective Diffusion Coefficient:} finally, the effective diffusion coefficient \( D_{\text{eff}} \) can be computed using the dispersion coefficient and the fluid velocity \( v \) as:
+\[ D_{\text{eff}} = \frac{D_{\text{disp}}}{v} \]
+where \( v \) is the velocity of the fluid.
+
+\FloatBarrier  % Prevents figures from floating past this point
+\subsection{Eugenio simulation V4}
+\paragraph{Input} Table \ref{tab:dfnWorksInputV4} lists the input values for parameters used in the current setup: 
+\begin{table}[!htbp]
+\centering
+\small
+\caption{Summary of relevant \texttt{dfnWorks} parameters used for simulating hydrogen diffusion through fractured shale caprock.}
+\begin{tabular}{|p{4cm}|p{4cm}|p{6.5cm}|}
+\hline
+\textbf{Parameter} & \textbf{Value} & \textbf{Description} \\
+\hline
+\multicolumn{3}{|c|}{\textbf{DFN Generation}} \\
+\hline
+\texttt{domainSize} & [5, 5, 5] m & Cubic domain representing minimum representative volume of shale caprock \\
+\texttt{h} & 0.05 m & Grid resolution for meshing the DFN \\
+\texttt{domainSizeIncrease} & [0.1, 0.1, 0.1] m & Buffer around the domain to avoid edge effects \\
+\texttt{keepOnlyLargestCluster} & True & Keep only the largest connected fracture cluster \\
+\texttt{ignoreBoundaryFaces} & False & Include boundary-intersecting fractures \\
+\texttt{boundaryFaces} & [0, 0, 0, 0, 1, 1] & Apply boundary conditions only on top and bottom faces \\
+\texttt{seed} & 42 & Random seed for reproducibility \\
+\hline
+\multicolumn{3}{|c|}{\textbf{Fracture Properties}} \\
+\hline
+\texttt{shape} & ell & Fracture geometry (elliptical) \\
+\texttt{distribution} & tpl & Truncated power-law radius distribution \\
+\texttt{alpha} & 2.5 & Power-law exponent for fracture size \\
+\texttt{min\_radius, max\_radius} & 1.0, 5.0 m & Size range of fractures \\
+\texttt{kappa} & 10.0 & Fisher distribution concentration (orientation clustering) \\
+\texttt{theta}, \texttt{phi} & 30°, 60° & Mean fracture orientation angles \\
+\texttt{aspect} & 1.5 & Ellipse aspect ratio (elongation) \\
+\texttt{beta\_distribution} & 1 & Constant in-plane rotation \\
+\texttt{beta} & 45° & In-plane fracture rotation \\
+\texttt{p32} & 2.0 m$^2$/m$^3$ & Fracture intensity \\
+\texttt{hy\_function} & correlated & Aperture-size scaling correlation \\
+\texttt{hy\_params} & $\alpha = 10^{-5}$, $\beta = 0.5$ & Hydraulic aperture scaling \\
+\hline
+\multicolumn{3}{|c|}{\textbf{Simulation Parameters}} \\
+\hline
+\texttt{SIMULATION\_TYPE} & SUBSURFACE & Selects subsurface physics \\
+\texttt{MODE (flow)} & RICHARDS & Flow model for variably saturated porous media \\
+\texttt{MODE (transport)} & GIRT & Advection-diffusion transport model \\
+\texttt{DIFFUSION\_COEFFICIENT} & $ \color{red} 4.5 \times 10^{-8}$ m$^2$/s & Molecular diffusion coefficient for tracer \\
+\texttt{POROSITY} & 0.25 & Matrix porosity \\
+\texttt{TORTUOSITY} & 0.2 & Tortuosity factor affecting diffusion \\
+\texttt{SATURATION FUNCTION} & van Genuchten, $\alpha = 10^{-3}$, $m=0.5$ & Capillary pressure–saturation relation \\
+\texttt{INITIAL\_CONDITION} & $P = 1.01325 \times 10^6$ Pa, $C = 10^{-20}$ & Fully saturated and tracer-free initial state \\
+\texttt{BOUNDARY CONDITIONS} & Injection at bottom, outflow at top & Drive tracer transport upward \\
+\texttt{GRAVITY} & [0, 0, 0] & No gravitational gradient (saturation control) \\
+\texttt{TIME} & 0.1–10 years timestep, up to 1000 years & Simulation runtime control \\
+\hline
+\end{tabular}
+\label{tab:dfnWorksInputV4}
+\end{table}
+
+\begin{figure}[htbp!]
+    \centering
+    \includegraphics[width=0.45\textwidth]{images/dfnWorksImages/3DdfnDiffEugV4.png}
+    \hspace{0.05\textwidth}
+    \includegraphics[width=0.45\textwidth]{images/dfnWorksImages/btcFrom3DeugV4.png}
+    \vspace{0.05\textwidth}
+    \includegraphics[width=0.45\textwidth]{images/dfnWorksImages/btcFrom3DeugV4norm.png}
+    \hspace{0.05\textwidth}
+    \includegraphics[width=0.45\textwidth]{images/dfnWorksImages/complementaryBtcFrom3DeugV4norm.png}
+    \caption{Clockwise: Plateau-normalised BTC. Right: Complementary plateau-normalised BTC.}
+    \label{fig:3DdfnWorksEugV4}
+\end{figure}
+
+\paragraph{Output}
 
 \FloatBarrier  % Prevents figures from floating past this point
 \section{Diffusion equation in OpenPNM}
