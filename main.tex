@@ -1198,6 +1198,13 @@ where $D_{mol}=10^{-5} m^2/s$ and $\Delta x=10^{-3} m$.
 
 \FloatBarrier  % Prevents figures from floating past this point
 \section{3D diffusion simulation with dfnWorks}
+The statistical characterisation of fractures according to \ref{clemo1994dual} divides the relevant parameters into three groups: 1) characteristics of individual fractures, 2) fracture density which is a composite characteristic of all the fractures, and 3) characteristics of the relationships of individual fractures. These are listed in table \ref{}:
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\textwidth]{images/Clemo1994FracChar.png}
+    \caption{BTC from simulation.}
+    \label{tab:FracChar}
+\end{figure}
 The most relevant parameters for simulating hydrogen diffusion through fractured domain are listed in table \ref{tab:dfnWorksParam} with some typical range for fractured shale caprock:
 \begin{table}[htbp]
 \centering
@@ -1302,17 +1309,14 @@ Input file setup:
     \includegraphics[width=0.45\textwidth]{images/dfnWorksImages/3DdfnDiffEugV3.png}
     \hspace{0.05\textwidth}
     \includegraphics[width=0.45\textwidth]{images/dfnWorksImages/btcFrom3DeugV3.png}
-    \caption{Left: 3D fractured network from dfnWorks simulation. Right: breakthrough curves for 1000 years time span.}
-    \label{fig:3DdfnWorksEugV3}
-\end{figure}
-\begin{figure}[htbp!]
-    \centering
+    \vspace{0.05\textwidth}
     \includegraphics[width=0.45\textwidth]{images/dfnWorksImages/btcFrom3DeugV3norm.png}
     \hspace{0.05\textwidth}
     \includegraphics[width=0.45\textwidth]{images/dfnWorksImages/complementaryBtcFrom3DeugV3norm.png}
-    \caption{Left: Plateau-normalised BTC. Right: Complementary plateau-normalised BTC.}
+    \caption{Clockwise: 1) Plateau-normalised BTC. 2) Complementary plateau-normalised BTC. 3) 3D fractured network from dfnWorks simulation. 4) Breakthrough curves for 1000 years time span.}
     \label{fig:3DdfnWorksEugV3norm}
 \end{figure}
+\FloatBarrier  % Prevents figures from floating past this point
 First statistical moment (expected value):
 \begin{equation}
     E\left[X\right] = \int_{-\infty}^{\infty} x f(x) dx.
@@ -1418,11 +1422,26 @@ where \( v \) is the velocity of the fluid.
     \includegraphics[width=0.45\textwidth]{images/dfnWorksImages/btcFrom3DeugV4norm.png}
     \hspace{0.05\textwidth}
     \includegraphics[width=0.45\textwidth]{images/dfnWorksImages/complementaryBtcFrom3DeugV4norm.png}
-    \caption{Clockwise: Plateau-normalised BTC. Right: Complementary plateau-normalised BTC.}
+    \caption{Clockwise: 1) 3D fractured network from dfnWorks simulation. 2) breakthrough curves for 1000 years time span. 3) Plateau-normalised BTC. 4) Complementary plateau-normalised BTC.}
     \label{fig:3DdfnWorksEugV4}
 \end{figure}
 
-\paragraph{Output}
+\FloatBarrier
+\paragraph{Output} The metrics of the breakthroguh curve for concentration and time are listed in table \ref{tab:StatMomV4}.
+\begin{table}[h!]
+\centering
+\begin{tabular}{lccc}
+\toprule
+        & $ E[X]$ & $E[X^2]$ & $Var[X]$ \\
+\midrule
+$c$     & 0.91837        & 0.88465           & 0.04124           \\
+$t$     & 538            & 362165            & 72275             \\
+\bottomrule
+\end{tabular}
+\caption{Statistical moments of the breakthrough curve in figure \ref{fig:3DdfnWorksEugV4}.}
+\label{tab:StatMomV4}
+\end{table}
+The dispersion coefficient is \[ D_{\text{disp}} = \frac{E[t^2]}{2 E[t]} = 336. \]
 
 \FloatBarrier  % Prevents figures from floating past this point
 \section{Diffusion equation in OpenPNM}
