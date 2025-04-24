@@ -1198,14 +1198,15 @@ where $D_{mol}=10^{-5} m^2/s$ and $\Delta x=10^{-3} m$.
 
 \FloatBarrier  % Prevents figures from floating past this point
 \section{3D diffusion simulation with dfnWorks}
-The statistical characterisation of fractures according to \ref{clemo1994dual} divides the relevant parameters into three groups: 1) characteristics of individual fractures, 2) fracture density which is a composite characteristic of all the fractures, and 3) characteristics of the relationships of individual fractures. These are listed in table \ref{}:
+The statistical characterisation of fractures according to \cite{clemo1994dual} divides the relevant parameters into three groups: 1) characteristics of individual fractures, 2) fracture density which is a composite characteristic of all the fractures, and 3) characteristics of the relationships of individual fractures. These are listed in table \ref{fig:FracChar}:
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.9\textwidth]{images/Clemo1994FracChar.png}
-    \caption{BTC from simulation.}
-    \label{tab:FracChar}
+    \includegraphics[width=0.7\textwidth]{images/Clemo1994FracChar.png}
+    \caption{Fracture statistical characterisation according to Clemo1994.}
+    \label{fig:FracChar}
 \end{figure}
-The most relevant parameters for simulating hydrogen diffusion through fractured domain are listed in table \ref{tab:dfnWorksParam} with some typical range for fractured shale caprock:
+\FloatBarrier
+The most relevant parameters available in \texttt{dfnWorks} for simulating hydrogen diffusion through fractured domain are listed in table \ref{tab:dfnWorksParam} with some typical range for fractured shale caprock:
 \begin{table}[htbp]
 \centering
 \small
@@ -1214,7 +1215,7 @@ The most relevant parameters for simulating hydrogen diffusion through fractured
 \toprule
 \textbf{Parameter} & \textbf{Description} & \textbf{Typical Range} \\
 \midrule
-\texttt{domainSize} & Size of the cubic simulation domain & $[5, 5, 5]$ m (minimum representative volume) \\
+\texttt{domainSize} & Size of the cubic simulation domain & $[50, 50, 50]$ m (minimum representative volume) \\
 \texttt{h} & Mesh resolution & 0.01--0.1 m (refined for fracture detail) \\
 \texttt{p32} & Fracture intensity (area per unit volume) & 0.5--5.0 m\textsuperscript{2}/m\textsuperscript{3} \\
 \texttt{alpha (TPL)} & Power-law exponent for fracture size distribution & 2.0--3.5 \\
@@ -1235,6 +1236,7 @@ The most relevant parameters for simulating hydrogen diffusion through fractured
 \label{tab:dfnWorksParam}
 \end{table}
 
+\FloatBarrier
 \subsection{Jeffrey simulation V1}
 Python file setup:
 \begin{itemize}
@@ -1353,11 +1355,10 @@ where $P(c_i)=\frac{dt_i}{T}$ with $T$ being the final time of the simulation.
     Var(t) = \sum_{i=1}^{n}t_i^2 P(t_i)-\left(\sum_{i=1}^{n}t_i P(t_i)\right)^2 = 336461-504^2 = 81811
 \end{equation}
 where $P(t_i)=\frac{c_i dt_i}{\sum_{i=1}^nc_idt_i}$.
-\paragraph{Dispersion Coefficient:} the dispersion coefficient \( D_{\text{disp}} \) is related to the variance and the mean residence time. It is calculated as:
-\[ D_{\text{disp}} = \frac{E[t^2]}{2 E[t]} = 333 \]
-\paragraph{Effective Diffusion Coefficient:} finally, the effective diffusion coefficient \( D_{\text{eff}} \) can be computed using the dispersion coefficient and the fluid velocity \( v \) as:
-\[ D_{\text{eff}} = \frac{D_{\text{disp}}}{v} \]
-where \( v \) is the velocity of the fluid.
+% \paragraph{Dispersion Coefficient:} the dispersion coefficient \( D_{\text{disp}} \) is related to the variance and the mean residence time. It is calculated as:
+% \[ D_{\text{disp}} = \frac{E[t^2]}{2 E[t]} = 333. \]
+\paragraph{Effective Diffusion Coefficient:} the effective diffusion coefficient \( D_{\text{eff}} \) can be computed using the domain size as the characteristic length and the mean arrival time:
+\[ D_{\text{eff}} = \frac{L_{domain}^2}{E[t]} = \frac{5^2}{504} = 0.0496 [m^2/s]. \]
 
 \FloatBarrier  % Prevents figures from floating past this point
 \subsection{Eugenio simulation V4}
@@ -1441,7 +1442,32 @@ $t$     & 538            & 362165            & 72275             \\
 \caption{Statistical moments of the breakthrough curve in figure \ref{fig:3DdfnWorksEugV4}.}
 \label{tab:StatMomV4}
 \end{table}
-The dispersion coefficient is \[ D_{\text{disp}} = \frac{E[t^2]}{2 E[t]} = 336. \]
+% The dispersion coefficient is
+% \[ D_{\text{disp}} = \frac{E[t^2]}{2 E[t]} = 336 \]
+The diffusion coefficient is
+\[ D_{eff} = \frac{L_{domain}^2}{E[t]} = \frac{5^2}{538} = 0.0464 [m^2/s]. \]
+
+\FloatBarrier  % Prevents figures from floating past this point
+\subsection{Eugenio simulation V5}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/dfnDiffEugDriverV5.png}
+    \caption{Fracture statistical characterisation according to Clemo1994.}
+    \label{fig:FracChar}
+\end{figure}
+
+\begin{figure}[htbp!]
+    \centering
+    \includegraphics[width=0.45\textwidth]{images/dfnWorksImages/3DdfnDiffEugV5.png}
+    \hspace{0.05\textwidth}
+    \includegraphics[width=0.45\textwidth]{images/dfnWorksImages/btcFrom3DeugV5.png}
+    \vspace{0.05\textwidth}
+    \includegraphics[width=0.45\textwidth]{images/dfnWorksImages/btcFrom3DeugV5norm.png}
+    \hspace{0.05\textwidth}
+    \includegraphics[width=0.45\textwidth]{images/dfnWorksImages/complementaryBtcFrom3DeugV5norm.png}
+    \caption{Clockwise: 1) 3D fractured network from dfnWorks simulation. 2) breakthrough curves for 1000 years time span. 3) Plateau-normalised BTC. 4) Complementary plateau-normalised BTC.}
+    \label{fig:3DdfnWorksEugV5}
+\end{figure}
 
 \FloatBarrier  % Prevents figures from floating past this point
 \section{Diffusion equation in OpenPNM}
