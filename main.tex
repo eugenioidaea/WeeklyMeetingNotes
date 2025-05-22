@@ -1472,11 +1472,11 @@ The diffusion coefficient is
 
 \FloatBarrier  % Prevents figures from floating past this point
 \subsection{Eugenio simulation V6}
-\paragraph{Input} Code \ref{code:InputV6} lists the input values for parameters used in the current driver file while code \ref{} lists the input values for parameters used in the current input file:
+\paragraph{Input} Code \ref{code:DriverV6} lists the input values for parameters used in the current driver file while code \ref{code:InputV6} lists the input values for parameters used in the current input file:
 
-\lstinputlisting[language=Python, caption=Example of imported code, label=code:InputV6]{codes/dfnworks_sim_v6/TPL_example.py}
+\lstinputlisting[language=Python, caption=Driver file, label=code:DriverV6]{codes/dfnworks_sim_v6/TPL_example.py}
 
-
+\lstinputlisting[basicstyle=\ttfamily, caption=Input file, label=code:InputV6]{codes/dfnworks_sim_v6/dfn_diffusion_no_flow.in}
 
 \begin{figure}[htbp!]
     \centering
@@ -1492,7 +1492,7 @@ The diffusion coefficient is
 \end{figure}
 
 \FloatBarrier  % Prevents figures from floating past this point
-\paragraph{Output} The metrics of the breakthroguh curve for concentration and time are listed in table \ref{tab:StatMomV6}.
+\paragraph{Output} The metrics of the breakthroguh curve for concentration and time are listed in table \ref{tab:StatMomV6}. The statistical moments of the concentrations are computed for the plateau-normalised values of the concentration.
 \begin{table}[h!]
 \centering
 \begin{tabular}{lccc}
@@ -1506,10 +1506,11 @@ $t$     & 508          & 339067          & 80629             \\
 \caption{Statistical moments of the breakthrough curve in figure \ref{fig:3DdfnWorksEugV6}.}
 \label{tab:StatMomV6}
 \end{table}
-% The dispersion coefficient is
-% \[ D_{\text{disp}} = \frac{E[t^2]}{2 E[t]} = 336 \]
+
+The dispersion coefficient is
+\[ D_{\text{disp}} = \frac{E[t^2]}{2 E[t]} = 333 [s] \]
 The diffusion coefficient is
-\[ D_{eff} = \frac{L_{domain}^2}{E[t]} = \frac{5^2}{538} = 0.0464 [m^2/s]. \]
+\[ D_{eff} = \frac{L_{domain}^2}{E[t]} = \frac{20^2}{538} = 0.768 [m^2/s]. \]
 
 \FloatBarrier  % Prevents figures from floating past this point
 \section{Diffusion equation in OpenPNM}
