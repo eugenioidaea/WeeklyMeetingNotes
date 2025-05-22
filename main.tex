@@ -1499,8 +1499,8 @@ The diffusion coefficient is
 \toprule
         & $ E[X]$ & $E[X^2]$ & $Var[X]$ \\
 \midrule
-$c$     & 0.983        & 0.975           & 0.00934           \\
-$t$     & 508          & 339067          & 80629             \\
+$c$     & 0.979        & 0.968           & 0.00995           \\
+$t$     & 510          & 339667          & 79458             \\
 \bottomrule
 \end{tabular}
 \caption{Statistical moments of the breakthrough curve in figure \ref{fig:3DdfnWorksEugV6}.}
@@ -1511,6 +1511,13 @@ The dispersion coefficient is
 \[ D_{\text{disp}} = \frac{E[t^2]}{2 E[t]} = 333 [s] \]
 The diffusion coefficient is
 \[ D_{eff} = \frac{L_{domain}^2}{E[t]} = \frac{20^2}{538} = 0.768 [m^2/s]. \]
+
+\subsection{Eugenio simulation V7}
+\paragraph{Input} Code \ref{code:DriverV7} lists the input values for parameters used in the current driver file while code \ref{code:InputV7} lists the input values for parameters used in the current input file:
+
+\lstinputlisting[language=Python, caption=Driver file, label=code:DriverV7]{codes/dfnworks_sim_v7/TPL_example.py}
+
+\lstinputlisting[basicstyle=\ttfamily, caption=Input file, label=code:InputV7]{codes/dfnworks_sim_v7/dfn_diffusion_no_flow.in}
 
 \FloatBarrier  % Prevents figures from floating past this point
 \section{Diffusion equation in OpenPNM}
