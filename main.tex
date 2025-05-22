@@ -8,7 +8,7 @@
 \usepackage{geometry}
 \geometry{margin=1in}
 \usepackage{xcolor}
-\usepackage{verbatim}
+\usepackage{listings}
 
 \title{Weekly meeting notes}
 \author{Eugenio Pescimoro }
@@ -1472,33 +1472,11 @@ The diffusion coefficient is
 
 \FloatBarrier  % Prevents figures from floating past this point
 \subsection{Eugenio simulation V6}
-\paragraph{Input} Table \ref{fig:InputV6} lists the input values for parameters used in the current setup: 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.9\textwidth]{images/dfnWorksImages/dfnDiffEugDriverV6.png}
-    \caption{Driver input for V6.}
-    \label{fig:InputV6}
-\end{figure}
+\paragraph{Input} Code \ref{code:InputV6} lists the input values for parameters used in the current driver file while code \ref{} lists the input values for parameters used in the current input file:
 
-\begin{verbatim}
-#================================================
+\lstinputlisting[language=Python, caption=Example of imported code, label=code:InputV6]{codes/dfnworks_sim_v6/TPL_example.py}
 
-SIMULATION
-  SIMULATION_TYPE SUBSURFACE
-  PROCESS_MODELS
-    SUBSURFACE_FLOW flow
-      MODE RICHARDS
-    /
-    SUBSURFACE_TRANSPORT transport
-      MODE GIRT
-      OPTIONS
-      /
-    /
-  /
-END
 
-SUBSURFACE
-\end{verbatim}
 
 \begin{figure}[htbp!]
     \centering
