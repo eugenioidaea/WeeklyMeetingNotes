@@ -1512,12 +1512,26 @@ The dispersion coefficient is
 The diffusion coefficient is
 \[ D_{eff} = \frac{L_{domain}^2}{E[t]} = \frac{20^2}{538} = 0.768 [m^2/s]. \]
 
+\FloatBarrier  % Prevents figures from floating past this point
 \subsection{Eugenio simulation V7}
 \paragraph{Input} Code \ref{code:DriverV7} lists the input values for parameters used in the current driver file while code \ref{code:InputV7} lists the input values for parameters used in the current input file:
 
 \lstinputlisting[language=Python, caption=Driver file, label=code:DriverV7]{codes/dfnworks_sim_v7/TPL_example.py}
 
 \lstinputlisting[basicstyle=\ttfamily, caption=Input file, label=code:InputV7]{codes/dfnworks_sim_v7/dfn_diffusion_no_flow.in}
+
+\begin{figure}[htbp!]
+    \centering
+    \includegraphics[width=0.45\textwidth]{images/dfnWorksImages/3DdfnDiffEugV7.png}
+    \hspace{0.05\textwidth}
+    \includegraphics[width=0.45\textwidth]{images/dfnWorksImages/btcFrom3DeugV7.png}
+    \vspace{0.05\textwidth}
+    \includegraphics[width=0.45\textwidth]{images/dfnWorksImages/btcFrom3DeugV7norm.png}
+    \hspace{0.05\textwidth}
+    \includegraphics[width=0.45\textwidth]{images/dfnWorksImages/complementaryBtcFrom3DeugV7norm.png}
+    \caption{Clockwise: 1) 3D fractured network from dfnWorks simulation. 2) breakthrough curves for 1000 years time span. 3) Plateau-normalised BTC. 4) Complementary plateau-normalised BTC.}
+    \label{fig:3DdfnWorksEugV6}
+\end{figure}
 
 \FloatBarrier  % Prevents figures from floating past this point
 \section{Diffusion equation in OpenPNM}
