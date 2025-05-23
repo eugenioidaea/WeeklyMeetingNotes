@@ -1530,8 +1530,36 @@ The diffusion coefficient is
     \hspace{0.05\textwidth}
     \includegraphics[width=0.45\textwidth]{images/dfnWorksImages/complementaryBtcFrom3DeugV7norm.png}
     \caption{Clockwise: 1) 3D fractured network from dfnWorks simulation. 2) breakthrough curves for 1000 years time span. 3) Plateau-normalised BTC. 4) Complementary plateau-normalised BTC.}
-    \label{fig:3DdfnWorksEugV6}
+    \label{fig:3DdfnWorksEugV7}
 \end{figure}
+
+\FloatBarrier  % Prevents figures from floating past this point
+\paragraph{Output} The metrics of the breakthroguh curve for concentration and time are listed in table \ref{tab:StatMomV7}. The statistical moments of the concentrations are computed for the plateau-normalised values of the concentration.
+\begin{table}[h!]
+\centering
+\begin{tabular}{lccc}
+\toprule
+        & $ E[X]$ & $E[X^2]$ & $Var[X]$ \\
+\midrule
+$c$     & 0.996        & 0.995           & 0.00184           \\
+$t$     & 501          & 333827          & 82046             \\
+\bottomrule
+\end{tabular}
+\caption{Statistical moments of the breakthrough curve in figure \ref{fig:3DdfnWorksEugV7}.}
+\label{tab:StatMomV7}
+\end{table}
+
+
+
+
+
+
+
+
+
+
+
+
 
 \FloatBarrier  % Prevents figures from floating past this point
 \section{Diffusion equation in OpenPNM}
